@@ -1,1 +1,20 @@
 Planning Doc
+
+
+Feature List:
+
+  00 - Dashboard
+  A0 - Connections
+  A1 - Reccomendations
+
+  B0 - Search
+  B1 - Document Engagements
+  B2 - Analyze Engagements
+
+  C0 - Engagement Templates
+  C1 - Contact Profiles
+  C2 - GPS Reccomendations
+
+  D0 - Heatmap
+  D1 - Points
+  D2 - News
