@@ -3,21 +3,23 @@ Planning Doc
 SCHEMA: https://dbdiagram.io/d/Netwerq-67b8c162263d6cf9a007a6ba
 
 MVP Feature List:
-  00 - Dashboard             (R)
-  A1 - Connections           (CRUD)
-  A2a - Preset Opportunities (CRUD)
-  A2b - Custom Opportunites  (CRUD)
+  00  -  Dashboard            (R)
+* A1  -  Connections          (CRUD)
+* A2a -  Preset Opportunities (CRUD)
+  A2b -  Custom Opportunites  (CRUD)
+  A3  -  Notifications        (RUD)
 
 Extended Future List:
-  B0 - Search
-  B1 - Document Engagements
-  B2 - Analyze Engagements
-  B4 - Calendar View
+  B0  -  Search
+  B1  -  Document Engagements
+  B2  -  Analyze Engagements
+  B4  -  Calendar View
 
-  C0 - Engagement Outreach Templates
-  C1 - Contact Profiles
-  C2 - GPS Reccomendations
+  C0  -  Engagement Outreach Templates
+  C1  -  Contact Profiles
+  C2  -  GPS Reccomendations
 
-  D0 - Heatmap
-  D1 - Points
-  D2 - News
+  D0  -  Heatmap
+  D1  -  Points
+  D2  -  News
+
