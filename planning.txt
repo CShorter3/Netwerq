@@ -17,7 +17,7 @@ Extended Future List:
 
   C0  -  Engagement Outreach Templates
   C1  -  Contact Profiles
-  C2  -  GPS Reccomendations
+  C2  -  GPS Notifications
 
   D0  -  Heatmap
   D1  -  Points
