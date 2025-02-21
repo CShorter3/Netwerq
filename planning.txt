@@ -1,17 +1,19 @@
 Planning Doc
 
 
-Feature List:
+MVP Feature List:
+  00 - Dashboard             (R)
+  A1 - Connections           (CRUD)
+  A2a - Preset Opportunities (CRUD)
+  A2b - Custom Opportunites  (CRUD)
 
-  00 - Dashboard
-  A0 - Connections
-  A1 - Reccomendations
-
+Extended Future List:
   B0 - Search
   B1 - Document Engagements
   B2 - Analyze Engagements
+  B4 - Calendar View
 
-  C0 - Engagement Templates
+  C0 - Engagement Outreach Templates
   C1 - Contact Profiles
   C2 - GPS Reccomendations
 
