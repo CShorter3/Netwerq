@@ -1,25 +1,70 @@
-Planning Doc
+#### Planning Doc ####
+
 
 SCHEMA: https://dbdiagram.io/d/Netwerq-67b8c162263d6cf9a007a6ba
 
+
 MVP Feature List:
-  00  -  Dashboard            (R)
+  A0  -  Dashboard            (R)
 * A1  -  Connections          (CRUD)
-* A2a -  Preset Opportunities (CRUD)
-  A2b -  Custom Opportunites  (CRUD)
+* A2  -  Preset Opportunities (CRUD)
+  A2  -  Custom Opportunites  (CRUD)
   A3  -  Notifications        (RUD)
+  A4  -  GPS Notifications    (RUD)
 
 Extended Future List:
-  B0  -  Search
-  B1  -  Document Engagements
-  B2  -  Analyze Engagements
-  B4  -  Calendar View
+  B0  -  Engagement Logs (History)
+  B1  -  Historical Data Analysis Insights
+  B2  -  Historical Text Analysis Insights
+  B3  -  Search
 
+  B4  -  Calendar View
   C0  -  Engagement Outreach Templates
   C1  -  Contact Profiles
-  C2  -  GPS Notifications
 
-  D0  -  Heatmap
+  D0  -  Garden (Activity heatmap)
   D1  -  Points
   D2  -  News
 
+
+Feature Descriptions / Routes
+
+  Connections -> logged in user can SEED and manage their network
+    C - POST api/connections/:id
+    R - GET api/connections
+    U - PUT api/connections/:id
+    D - DELETE api/connections:id
+
+  Opportunities -> logged in user can manage action plans to MAINTAIN their network
+    C - POST api/opportunites/:id
+    R - GET api/opportunities
+    U - PUT api/opportunites/:id
+    D - DELETE api/opportunites/:id
+
+  Notifications -> logged in user can recieve notifications and reminders to NURTURE their network
+    C - 
+    R - 
+    U - 
+    D - 
+
+  History -> logged in user can DOCUMENT interactions with their network
+    C - 
+    R - 
+    U - 
+    D - 
+
+  Historical Text Analysis - logged in user can use sentiment analysis INFORM their networking decisions
+    C - 
+    R - 
+    U - 
+    D - 
+
+  Historical Data Analysis - logged in user can use aggregate data insights to INFORM their networking decisions
+    C - 
+    R - 
+    U - 
+    D - 
+  
+
+
+    
