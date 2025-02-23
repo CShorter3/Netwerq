@@ -93,15 +93,7 @@ A registered and authorized user can access the Contact Page at `api/connections
 
 ##### Before Submission:
 - A user can input and edit a new contact’s details:
-  - First name
-  - Last name
-  - Email
-  - City
-  - State
-  - Title
-  - Company
-  - Initial meeting description
-  - Distinctive memory key
+  - First name, Last name, Email, City, State, Title, Company, Initial meeting description, Distinctive memory key
 - A user can click a Cancel button to void the contact creation and return home.
 
 ##### After Form Validation & Submission (Contact Details):
