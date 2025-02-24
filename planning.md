@@ -1,13 +1,16 @@
-# Netwerq MPV
+![IMG_4050](https://github.com/user-attachments/assets/a40a23e2-1eb2-4481-b19f-466613569097)# Netwerq MPV
 
 MVP Implements the Connections and Opportunities Features Only
 
 Schema: [Netwerq Database Schema](https://dbdiagram.io/d/Netwerq-67b8c162263d6cf9a007a6ba)
 
+Wireframes: 
+
+
 ## MVP Feature List
 - A0 - Dashboard (R)
-- A1 - Connections (CRUD)  
-- A2 - Preset Opportunities (CRUD)  
+**- A1 - Connections (CRUD)**
+**- A2 - Preset Opportunities (CRUD)**
 - A2 - Custom Opportunities (CRUD)  
 - A3 - Notifications (RUD)  
 - A4 - GPS Notifications (RUD)  
