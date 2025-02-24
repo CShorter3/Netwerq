@@ -9,8 +9,8 @@ Wireframes:
 
 ## MVP Feature List
 - A0 - Dashboard (R)
-**- A1 - Connections (CRUD)**
-**- A2 - Preset Opportunities (CRUD)**
+- A1 - **Connections (CRUD)**
+- A2 - **Preset Opportunities (CRUD)**
 - A2 - Custom Opportunities (CRUD)  
 - A3 - Notifications (RUD)  
 - A4 - GPS Notifications (RUD)  
