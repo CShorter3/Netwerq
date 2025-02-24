@@ -4,10 +4,7 @@ MVP Implements the Connections and Opportunities Features Only
 
 Schema: [Netwerq Database Schema](https://dbdiagram.io/d/Netwerq-67b8c162263d6cf9a007a6ba)
 
-Wireframes: 
-<img src="IMG_4048" width="100" />
-<img src="IMG_4049.jpg" width="100" />
-<img src="IMG_4050" width="100" />
+Wireframes: Please refer to IMG_4048, IMG_4049, IMG_4050 in the root directory. 
 
 ## MVP Feature List
 - A0 - Dashboard (R)
