@@ -13,8 +13,8 @@ class Contact(db.Model):
     city = db.Column(db.String(35))
     state = db.Column(db.String(35))
     number = db.Column(db.String(20)) # supports international numbers
-    title = db.Column(db.String(35))
-    company = db.Column(db.String(35))
+    title = db.Column(db.String(50))
+    company = db.Column(db.String(50))
     last_contacted = db.Column(db.DateTime)
     init_meeting_note = db.Column(db.String(300))      # how the user met contact
     distinct_memory_note = db.Column(db.String(300))   # memory triggers: distinct features, qualitites, or ridiclous associations 
