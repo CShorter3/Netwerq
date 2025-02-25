@@ -4,10 +4,12 @@ MVP Implements the Connections and Opportunities Features Only
 
 Schema: [Netwerq Database Schema](https://dbdiagram.io/d/Netwerq-67b8c162263d6cf9a007a6ba)
 
+Wireframes: Please refer to IMG_4048, IMG_4049, IMG_4050 in the root directory. 
+
 ## MVP Feature List
 - A0 - Dashboard (R)
-- A1 - Connections (CRUD)  
-- A2 - Preset Opportunities (CRUD)  
+- A1 - **Connections (CRUD)**
+- A2 - **Preset Opportunities (CRUD)**
 - A2 - Custom Opportunities (CRUD)  
 - A3 - Notifications (RUD)  
 - A4 - GPS Notifications (RUD)  
