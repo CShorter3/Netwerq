@@ -9,15 +9,17 @@ class Contact(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
     relation_type = db.Column(db.String(10), nullable=False) # mentor, peer, mentee, or recruiter
     city = db.Column(db.String(35))
     state = db.Column(db.String(35))
     number = db.Column(db.String(20)) # supports international numbers
-    title = db.Column(db.String(50))
+    job_title = db.Column(db.String(50))
     company = db.Column(db.String(50))
     last_contacted = db.Column(db.DateTime)
-    init_meeting_note = db.Column(db.String(300))      # how the user met contact
-    distinct_memory_note = db.Column(db.String(300))   # memory triggers: distinct features, qualitites, or ridiclous associations 
+    init_meeting_note = db.Column(db.String(300), nullable=False)      # how the user met contact
+    distinct_memory_note = db.Column(db.String(300), nullable=False)   # memory triggers: distinct features, qualitites, or ridiclous associations 
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     def update_last_contact(self):
@@ -29,14 +31,16 @@ class Contact(db.Model):
         """Returns a dictionary representation of a contact, easily interpreted by the front end."""
         return {
             "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
             "relation_type": self.relation_type,
-            "city": self.city,
-            "state": self.state,
-            "number": self.number,
-            "title": self.title,
-            "company": self.company,
+            "city": self.city or "-",
+            "state": self.state or "-",
+            "number": self.number or "-",
+            "job_title": self.title or "-",
+            "company": self.company or "-",
             "last_contacted": self.last_contacted.isoformat() if self.last_contacted else "Never Contacted",
             "init_meeting_note": self.init_meeting_note,
             "distinct_memory_note": self.distinct_memory_note,
             "user_id": self.user_id,
-        }  
+        }
