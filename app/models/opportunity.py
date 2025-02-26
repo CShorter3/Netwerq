@@ -16,3 +16,12 @@ class Opportunity(db.Model):
     next_date = db.Column(db.Date)                # set on init depending on occurence, updated when current completed, used to calculate overdue
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False) 
     contact_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('contacts.id')), nullable=False )
+
+    # access the user who created opoprunity with opportunity.user
+    # access the contact associated with the opporunity using opportunity.contact
+    user = db.relationship('User', back_populates='opportunities')
+    contact = db.relationship('Contact', back_populates='opportunities')
+
+    # Timestamps track creation and updates
+    created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
