@@ -26,6 +26,9 @@ class Contact(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
+    # In Contact model
+    opportunities = db.relationship('Opportunity', back_populates='contact', cascade="all, delete-orphan")
+
     def update_last_contact(self):
         """Updates last_contacted timestamp in EST time."""
         self.last_contacted = datetime.now(ZoneInfo("America/New_York"))
