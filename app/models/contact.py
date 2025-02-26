@@ -22,6 +22,10 @@ class Contact(db.Model):
     distinct_memory_note = db.Column(db.String(300), nullable=False)   # memory triggers: distinct features, qualitites, or ridiclous associations 
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
+    # Timestamps track creation and updates
+    created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
     def update_last_contact(self):
         """Updates last_contacted timestamp in EST time."""
         self.last_contacted = datetime.now(ZoneInfo("America/New_York"))
