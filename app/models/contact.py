@@ -37,7 +37,7 @@ class Contact(db.Model):
             "city": self.city or "-",
             "state": self.state or "-",
             "number": self.number or "-",
-            "job_title": self.title or "-",
+            "job_title": self.job_title or "-",
             "company": self.company or "-",
             "last_contacted": self.last_contacted.isoformat() if self.last_contacted else "Never Contacted",
             "init_meeting_note": self.init_meeting_note,
