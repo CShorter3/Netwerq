@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from datetime import datetime, timezone
 
 class Opportunity(db.Model):
     __tablename__ = "opportunities"
@@ -23,8 +24,8 @@ class Opportunity(db.Model):
     contact = db.relationship('Contact', back_populates='opportunities')
 
     # Timestamps track creation and updates
-    created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     def to_dict(self):
         """Returns a dictionary representation of opportunity, easily interpreted by the front end."""

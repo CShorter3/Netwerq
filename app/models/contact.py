@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from datetime import datetime
-from zoneinfo import ZoneInfo
+from datetime import datetime, timezone
+#from zoneinfo import ZoneInfo
 
 class Contact(db.Model):
     __tablename__ = "contacts"
@@ -23,15 +23,15 @@ class Contact(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     # Timestamps track creation and updates
-    created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     user = db.relationship('User', back_populates='connections')
     opportunities = db.relationship('Opportunity', back_populates='contact', cascade="all, delete-orphan")
 
     def update_last_contact(self):
-        """Updates last_contacted timestamp in EST time."""
-        self.last_contacted = datetime.now(ZoneInfo("America/New_York"))
+        """Updates last_contacted timestamp in UTC time."""
+        self.last_contacted = datetime.now(timezone.utc)
         db.session.commit()
 
     def to_dict(self):
@@ -50,4 +50,6 @@ class Contact(db.Model):
             "init_meeting_note": self.init_meeting_note,
             "distinct_memory_note": self.distinct_memory_note,
             "user_id": self.user_id,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
         }
