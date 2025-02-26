@@ -11,7 +11,7 @@ class Opportunity(db.Model):
     title = db.Column(db.String(50), nullable=False)             # 'Quarterly Coffee Chat', 'MVP Brainstorming Session', 'Annual Easter Party Invite' 
     description = db.Column(db.String(80), nullable=False)
     status = db.Column(db.String(10), nullable=False, default='Active')  # 'Active', 'Pending', 'Completed' || 'Active', 'Paused', 'Completed'
-    occurrence = db.Column(db.String(15))           # 'Once', 'Weekly', 'Bi-weekly', 'Monthly', 'Quarterly', 'Bi-Annually', 'Anually' 
+    occurrence = db.Column(db.String(15), nullable=False)           # 'Once', 'Weekly', 'Bi-weekly', 'Monthly', 'Quarterly', 'Bi-Annually', 'Anually' 
     icon = db.Column(db.String(10), default='📅')  #  '<any emoji>'
     next_date = db.Column(db.Date)                # set on init depending on occurence, updated when current completed, used to calculate overdue
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False) 
@@ -25,3 +25,20 @@ class Opportunity(db.Model):
     # Timestamps track creation and updates
     created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
+    def to_dict(self):
+        """Returns a dictionary representation of opportunity, easily interpreted by the front end."""
+        return {
+            'id': self.id,
+            'opportunity_type': self.opportunity_type,
+            'title': self.title,
+            'description': self.description,
+            'status': self.status,
+            'occurrence': self.occurrence,
+            'icon': self.icon,
+            'next_date': self.next_date.isoformat() if self.next_date else None,
+            'user_id': self.user_id,
+            'contact_id': self.contact_id,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+        } 

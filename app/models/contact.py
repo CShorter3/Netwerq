@@ -11,7 +11,7 @@ class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
-    relation_type = db.Column(db.String(10), nullable=False) # mentor, peer, mentee, or recruiter
+    relation_type = db.Column(db.String(10), nullable=False) # 'mentor', 'peer', 'mentee', 'recruiter'
     city = db.Column(db.String(35))
     state = db.Column(db.String(35))
     number = db.Column(db.String(20)) # supports international numbers
@@ -26,7 +26,7 @@ class Contact(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
-    # In Contact model
+    user = db.relationship('User', back_populates='connections')
     opportunities = db.relationship('Opportunity', back_populates='contact', cascade="all, delete-orphan")
 
     def update_last_contact(self):

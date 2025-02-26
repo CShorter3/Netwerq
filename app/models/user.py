@@ -12,6 +12,14 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+
+    created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
+    # get all contacts for a user using user.contacts
+    # get all opportunities for user across contacts using user.opportunities
+    contacts = db.relationship('Contact', back_populates='user', cascade="all, delete-orphan")
+    opportunities = db.relationship('Opportunity', back_populates='user', cascade="all, delete-orphan")
     
     hashed_password = db.Column(db.String(255), nullable=False)
 
