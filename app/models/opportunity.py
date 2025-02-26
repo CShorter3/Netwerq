@@ -17,8 +17,8 @@ class Opportunity(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False) 
     contact_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('contacts.id')), nullable=False )
 
-    # access the user who created opoprunity with opportunity.user
-    # access the contact associated with the opporunity using opportunity.contact
+    # access the user who created opportunity with opportunity.user
+    # access the contact associated with the opportunity using opportunity.contact
     user = db.relationship('User', back_populates='opportunities')
     contact = db.relationship('Contact', back_populates='opportunities')
 
