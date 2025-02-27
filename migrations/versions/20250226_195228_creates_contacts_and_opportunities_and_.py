@@ -42,7 +42,7 @@ def upgrade():
         sa.Column('user_id', sa.Integer(), nullable=False),
         sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
         sa.Column('updated_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
-        sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id']),
         sa.PrimaryKeyConstraint('id')
     )
 
@@ -60,10 +60,15 @@ def upgrade():
         sa.Column('contact_id', sa.Integer(), nullable=False),
         sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
         sa.Column('updated_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
-        sa.ForeignKeyConstraint(['contact_id'], ['contacts.id'], ),
-        sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+        sa.ForeignKeyConstraint(['contact_id'], ['contacts.id']),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id']),
         sa.PrimaryKeyConstraint('id')
     )
+
+    # Set schema for production environment
+    if environment == "production":
+        op.execute(f"ALTER TABLE contacts SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE opportunities SET SCHEMA {SCHEMA};")
 
     # ### end Alembic commands ###
 
