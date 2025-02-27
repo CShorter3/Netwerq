@@ -26,7 +26,7 @@ class Contact(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
-    user = db.relationship('User', back_populates='connections')
+    user = db.relationship('User', back_populates='contacts')
     opportunities = db.relationship('Opportunity', back_populates='contact', cascade="all, delete-orphan")
 
     def update_last_contact(self):
