@@ -46,6 +46,25 @@ def upgrade():
         sa.PrimaryKeyConstraint('id')
     )
 
+    # Create opportunities table
+    op.create_table('opportunities',
+        sa.Column('id', sa.Integer(), nullable=False),
+        sa.Column('opportunity_type', sa.String(length=12), nullable=False, server_default='custom'),
+        sa.Column('title', sa.String(length=50), nullable=False),
+        sa.Column('description', sa.String(length=80), nullable=False),
+        sa.Column('status', sa.String(length=10), nullable=False, server_default='Active'),
+        sa.Column('occurrence', sa.String(length=15), nullable=False),
+        sa.Column('icon', sa.String(length=10), nullable=False, server_default='📅'),
+        sa.Column('next_date', sa.Date(), nullable=True),
+        sa.Column('user_id', sa.Integer(), nullable=False),
+        sa.Column('contact_id', sa.Integer(), nullable=False),
+        sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.Column('updated_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.ForeignKeyConstraint(['contact_id'], ['contacts.id'], ),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+        sa.PrimaryKeyConstraint('id')
+    )
+
     # ### end Alembic commands ###
 
 
