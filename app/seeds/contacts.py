@@ -1,13 +1,13 @@
 from app.models import db, User, Contact, environment, SCHEMA
 from sqlalchemy.sql import text
-from datetime import datetime, timezone
+#from datetime import datetime, timezone
 
 # Adds demo contacts, you can add other contacts here if you want
 def seed_contacts():
     # Get the demo user to associate contacts with
     demo = User.query.filter(User.username == 'Demo').first()
     marnie = User.query.filter(User.username == 'marnie').first()
-    bobbie = User.query.filter(User.username == 'bobbie').first()
+    #bobbie = User.query.filter(User.username == 'bobbie').first()
     
     sarah = Contact(
         first_name='Sarah',
