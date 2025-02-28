@@ -25,7 +25,7 @@ function ContactProfilePage(){
     const [errors, setErrors] = useState({});
     
     // Frontend input validation handling
-    const validateContactFields = (name, value) => {
+    const validateContactField = (name, value) => {
         let error = null;
         
         switch (name) {
@@ -111,20 +111,37 @@ function ContactProfilePage(){
         setFormData(prevState => ({ ...prevState, [name]: value }));
         
         // Clear current input error on type
-        // if (errors[name]) {
-        //     setErrors(prev => ({ ...prev, [name]: null }));
-        // }
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: null }));
+        }
     };
 
     // Handle active error handling on focus change
     const handleInputError = (e) => {
         const { name, value } = e.target;
-        const error = validateContactFields(name, value);
+        const error = validateContactField(name, value);
 
         if(error) {
             setErrors(prev => ({ ...prev, [name]: error }));
         }
     }
+
+    // Validate the entire contact got at once 
+    const validateForm = () => {
+        const newErrors = {};
+        
+        // check for form erros
+        Object.keys(formData).forEach(field => {
+          const error = validateContactField(field, formData[field]);
+          if (error) {
+            newErrors[field] = error;
+          }
+        });
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+      };
+      
 
 
     return (
