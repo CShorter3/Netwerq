@@ -24,23 +24,6 @@ function ContactProfilePage(){
     // Controlled contact form errors
     const [errors, setErrors] = useState({});
     
-    // Handle input changes
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-        ...prevState,
-        [name]: value
-        }));
-        
-        // Clear current input error on type
-        // if (errors[name]) {
-        // setErrors(prev => ({
-        //     ...prev,
-        //     [name]: null
-        // }));
-        // }
-    };
-
     // Frontend input validation handling
     const validateContactFields = (name, value) => {
         let error = null;
@@ -119,7 +102,29 @@ function ContactProfilePage(){
         }
         
         return error;
-      };
+    };
+    
+    
+    // Handle input changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+        
+        // Clear current input error on type
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: null }));
+        }
+    };
+
+    const handleInputError = (e) => {
+        const { name, value } = e.target;
+        const error = validateContactFields(name, value);
+
+        if(error) {
+            setErrors(prev => ({ ...prev, [name]: error }));
+        }
+    }
+
 
     return (
         <div className="contact-profile-page-container">
