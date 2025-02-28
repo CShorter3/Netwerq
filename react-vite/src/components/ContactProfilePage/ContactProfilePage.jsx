@@ -24,7 +24,7 @@ function ContactProfilePage(){
     // Controlled contact form errors
     const [errors, setErrors] = useState({});
     
-    // Frontend input validation handling
+    // Validate field input utility function
     const validateContactField = (name, value) => {
         let error = null;
         
@@ -104,8 +104,7 @@ function ContactProfilePage(){
         return error;
     };
     
-    
-    // Handle form input updates
+    // Listen for input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({ ...prevState, [name]: value }));
@@ -116,7 +115,7 @@ function ContactProfilePage(){
         }
     };
 
-    // Handle active error handling on focus change
+    // Listen for input errors on focus change
     const handleInputError = (e) => {
         const { name, value } = e.target;
         const error = validateContactField(name, value);
@@ -126,7 +125,7 @@ function ContactProfilePage(){
         }
     }
 
-    // Validate the entire contact got at once 
+    // Use utility function to validate the entire contact form at once
     const validateForm = () => {
         const newErrors = {};
         
@@ -140,9 +139,24 @@ function ContactProfilePage(){
         
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
-      };
-      
+    };
 
+    // Submit valid form to add contact and trigger dynamic UI changes
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if (validateForm()) {
+          console.log('Form data:', formData);
+          // process submission, trigger thunk and dynamic form behaviour
+        } else {
+          console.log('Form has errors, please correct them.');
+          // Optionally scroll to the first error
+          const firstError = document.querySelector('.error-message');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      };
 
     return (
         <div className="contact-profile-page-container">
