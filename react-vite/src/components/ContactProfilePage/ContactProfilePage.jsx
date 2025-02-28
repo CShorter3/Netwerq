@@ -148,7 +148,7 @@ function ContactProfilePage(){
         
         if (validateForm()) {
           console.log('Form data:', formData);
-          // process submission, trigger thunk and set "contactIsBooked" react state boolean variable to true, which will be used to make form read only, render a edit button, allow edit, and disapper submit form button 
+          // process submission, trigger thunk and set "contactIsBooked" react state boolean variable to true, which will be used to make form read only, render a edit button, allow edit, and disapper submit form button
         } else {
           console.log('Form has errors, please correct them.');
 
@@ -158,7 +158,7 @@ function ContactProfilePage(){
             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         }
-      };
+    };
 
     return (
         <div className="contact-profile-page-container">
@@ -188,6 +188,7 @@ function ContactProfilePage(){
                             name="first_name"
                             value={formData.first_name}
                             onChange={handleInputChange}
+                            onBlur={handleInputError}
                             maxLength={30}
                             required
                         />
@@ -203,6 +204,7 @@ function ContactProfilePage(){
                             name="last_name"
                             value={formData.last_name}
                             onChange={handleInputChange}
+                            onBlur={handleInputError}
                             maxLength={30}
                             required
                         />
@@ -276,6 +278,7 @@ function ContactProfilePage(){
                             name="city"
                             value={formData.city}
                             onChange={handleInputChange}
+                            onBlur={handleInputError}
                             maxLength={35}
                         />
                         {errors.city && <div className="error-message">{errors.city}</div>}
@@ -290,6 +293,7 @@ function ContactProfilePage(){
                             name="state"
                             value={formData.state}
                             onChange={handleInputChange}
+                            onBlur={handleInputError}
                             maxLength={35}
                         />
                         {errors.state && <div className="error-message">{errors.state}</div>}
@@ -306,6 +310,7 @@ function ContactProfilePage(){
                             name="number"
                             value={formData.number}
                             onChange={handleInputChange}
+                            onBlur={handleInputError}
                             maxLength={20}
                         />
                         {errors.number && <div className="error-message">{errors.number}</div>}
@@ -322,6 +327,7 @@ function ContactProfilePage(){
                             name="job_title"
                             value={formData.job_title}
                             onChange={handleInputChange}
+                            onBlur={handleInputError}
                             maxLength={50}
                         />
                         {errors.job_title && <div className="error-message">{errors.job_title}</div>}
@@ -336,6 +342,7 @@ function ContactProfilePage(){
                             name="company"
                             value={formData.company}
                             onChange={handleInputChange}
+                            onBlur={handleInputError}
                             maxLength={50}
                         />
                         {errors.company && <div className="error-message">{errors.company}</div>}
@@ -354,6 +361,7 @@ function ContactProfilePage(){
                         name="init_meeting_note"
                         value={formData.init_meeting_note}
                         onChange={handleInputChange}
+                        onBlur={handleInputError}
                         placeholder="Describe how you met this person..."
                         maxLength={300}
                         required
@@ -369,6 +377,7 @@ function ContactProfilePage(){
                         name="distinct_memory_note"
                         value={formData.distinct_memory_note}
                         onChange={handleInputChange}
+                        onBlur={handleInputError}
                         placeholder="Note distinctive features, qualities, or associations to help you remember this person..."
                         maxLength={300}
                         required
