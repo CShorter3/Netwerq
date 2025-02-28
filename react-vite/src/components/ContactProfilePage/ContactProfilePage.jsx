@@ -144,10 +144,8 @@ function ContactProfilePage(){
     // Submitting a valid form adds a user contact and triggers reactive UI behaviour
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Submit form clicked!");
         
         if (validateForm()) {
-          console.log('Form data:', formData);
           // process submission, trigger thunk and set "contactIsBooked" react state boolean variable to true, which will be used to make form read only, render a edit button, allow edit, and disapper submit form button
         } else {
           console.log('Form has errors, please correct them.');
@@ -401,7 +399,6 @@ function ContactProfilePage(){
                     className="save-button"
                     onClick={(e) => {
                         e.preventDefault();
-                        alert("Submit form clicked!");
                         console.log('Form data:', formData);
                         onClick={handleSubmit}
                         // Future implementation: form validation and submission
