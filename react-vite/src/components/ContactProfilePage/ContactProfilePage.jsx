@@ -401,7 +401,9 @@ function ContactProfilePage(){
                     className="save-button"
                     onClick={(e) => {
                         e.preventDefault();
+                        alert("Submit form clicked!");
                         console.log('Form data:', formData);
+                        onClick={handleSubmit}
                         // Future implementation: form validation and submission
                     }}
                     >
