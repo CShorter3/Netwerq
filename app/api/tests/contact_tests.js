@@ -42,12 +42,9 @@ async function getContactById(contactId) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken, // CSRF token included
-                'Cache-Control': 'no-cache, no-store, must-revalidate',
-                'Pragma': 'no-cache',
-                'Expires': '0'
+                'X-CSRFToken': csrfToken, 
             },
-            credentials: 'include' // Ensures cookies (session data) are sent
+            credentials: 'include'
         });
 
         console.log("Raw response:", response);
@@ -66,3 +63,40 @@ async function getContactById(contactId) {
 }
 
 getContactById(4);
+
+
+/***** #3 - POST a new contact *****/
+async function createContact() {
+
+    const data = {
+        first_name: "John",
+        last_name: "Doe",
+        relation_type: "mentor",
+        city: "San Francisco",
+        state: "CA",
+        number: "+1-555-123-4567",
+        job_title: "Software Engineer",
+        company: "TechCorp",
+        init_meeting_note: "Met at a networking event",
+        distinct_memory_note: "Loves hiking and AI research"
+    };
+
+    try {
+        const response = await fetch('/api/contacts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        console.log("Success:", result);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+createContact();
+
