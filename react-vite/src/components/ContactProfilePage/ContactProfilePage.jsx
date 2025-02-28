@@ -387,24 +387,17 @@ function ContactProfilePage(){
 
                 {/* Form Buttons */}
                 <div className="form-buttons">
-                    <button 
-                        type="button" 
-                        className="cancel-button"
+                    <button type="button" className="cancel-button"
                         onClick={() => navigate('/')}
                     >
-                    Cancel
+                        Cancel
                     </button>
-                    <button 
-                        type="submit" 
-                        className="save-button"
+                    <button type="submit" className="save-button"
                         onClick={(e) => {
                             e.preventDefault();
                             console.log('Form data:', formData);
-                            if(validateForm()){
-                                handleSubmit()
-                            }
-                            // Future implementation: form validation and submission
-                    }}
+                            handleSubmit(e)
+                        }}
                     >
                         Save Contact
                     </button>
