@@ -41,6 +41,85 @@ function ContactProfilePage(){
         // }
     };
 
+    // Frontend input validation handling
+    const validateContactFields = (name, value) => {
+        let error = null;
+        
+        switch (name) {
+          case 'first_name':
+            if (!value.trim()) {
+              error = "First name is required";
+            } else if (value.length > 30) {
+              error = "First name must be less than 30 characters";
+            }
+            break;
+            
+          case 'last_name':
+            if (!value.trim()) {
+              error = "Last name is required";
+            } else if (value.length > 30) {
+              error = "Last name must be less than 30 characters";
+            }
+            break;
+            
+          case 'relation_type':
+            if (!value) {
+              error = "Relationship type is required";
+            }
+            break;
+            
+          case 'city':
+            if (value && value.length > 35) {
+              error = "City must be less than 35 characters";
+            }
+            break;
+            
+          case 'state':
+            if (value && value.length > 35) {
+              error = "State must be less than 35 characters";
+            }
+            break;
+            
+          case 'number':
+            if (value && value.length > 20) {
+              error = "Phone number must be less than 20 characters";
+            }
+            break;
+            
+          case 'job_title':
+            if (value && value.length > 50) {
+              error = "Job title must be less than 50 characters";
+            }
+            break;
+            
+          case 'company':
+            if (value && value.length > 50) {
+              error = "Company name must be less than 50 characters";
+            }
+            break;
+            
+          case 'init_meeting_note':
+            if (!value.trim()) {
+              error = "Initial meeting note is required";
+            } else if (value.length > 300) {
+              error = "Initial meeting note must be less than 300 characters";
+            }
+            break;
+            
+          case 'distinct_memory_note':
+            if (!value.trim()) {
+              error = "Distinctive memory note is required";
+            } else if (value.length > 300) {
+              error = "Distinctive memory note must be less than 300 characters";
+            }
+            break;
+            
+          default:
+            break;
+        }
+        
+        return error;
+      };
 
     return (
         <div className="contact-profile-page-container">
