@@ -96,19 +96,52 @@ function ContactProfilePage(){
                     <div className="form-row">
                     <div className="form-group">
                         <label htmlFor="relation_type">Relationship Type *</label>
-                        <select
-                            id="relation_type"
-                            name="relation_type"
-                            value={formData.relation_type}
-                            onChange={handleInputChange}
-                            required
-                        >
-                            <option value="mentor">Mentor</option>
-                            <option value="peer">Peer</option>
-                            <option value="mentee">Mentee</option>
-                            <option value="recruiter">Recruiter</option>
-                        </select>
-                        {errors.relation_type && <div className="error-message">{errors.relation_type}</div>}
+                        <div className="radio-group">
+                        <label className="radio-label">
+                            <input
+                                type="radio"
+                                name="relation_type"
+                                value="mentor"
+                                checked={formData.relation_type === 'mentor'}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <span>Mentor</span>
+                        </label>
+                        <label className="radio-label">
+                            <input
+                                type="radio"
+                                name="relation_type"
+                                value="peer"
+                                checked={formData.relation_type === 'peer'}
+                                onChange={handleInputChange}
+                            />
+                            <span>Peer</span>
+                        </label>
+                        <label className="radio-label">
+                            <input
+                                type="radio"
+                                name="relation_type"
+                                value="mentee"
+                                checked={formData.relation_type === 'mentee'}
+                                onChange={handleInputChange}
+                            />
+                            <span>Mentee</span>
+                        </label>
+                        <label className="radio-label">
+                            <input
+                                type="radio"
+                                name="relation_type"
+                                value="recruiter"
+                                checked={formData.relation_type === 'recruiter'}
+                                onChange={handleInputChange}
+                            />
+                            <span>Recruiter</span>
+                        </label>
+                    </div>
+                    {errors.relation_type && (
+                        <div className="error-message">{errors.relation_type}</div>
+                    )}
                     </div>
                     </div>
                 </div>
