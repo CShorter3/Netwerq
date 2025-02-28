@@ -105,17 +105,18 @@ function ContactProfilePage(){
     };
     
     
-    // Handle input changes
+    // Handle form input updates
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({ ...prevState, [name]: value }));
         
         // Clear current input error on type
-        if (errors[name]) {
-            setErrors(prev => ({ ...prev, [name]: null }));
-        }
+        // if (errors[name]) {
+        //     setErrors(prev => ({ ...prev, [name]: null }));
+        // }
     };
 
+    // Handle active error handling on focus change
     const handleInputError = (e) => {
         const { name, value } = e.target;
         const error = validateContactFields(name, value);
