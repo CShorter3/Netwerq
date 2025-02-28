@@ -14,11 +14,11 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            <h1>Welcome, {sessionUser.first_name}!</h1>
+            <h1>Welcome, {sessionUser.username}!</h1>
             <button onClick={handleCreateContact} className="create-contact-button">
                 Create Contact
             </button>
-            
+
         </div>
     );
 }
