@@ -141,16 +141,18 @@ function ContactProfilePage(){
         return Object.keys(newErrors).length === 0;
     };
 
-    // Submit valid form to add contact and trigger dynamic UI changes
+    // Submitting a valid form adds a user contact and triggers reactive UI behaviour
     const handleSubmit = (e) => {
         e.preventDefault();
+        alert("Submit form clicked!");
         
         if (validateForm()) {
           console.log('Form data:', formData);
-          // process submission, trigger thunk and dynamic form behaviour
+          // process submission, trigger thunk and set "contactIsBooked" react state boolean variable to true, which will be used to make form read only, render a edit button, allow edit, and disapper submit form button 
         } else {
           console.log('Form has errors, please correct them.');
-          // Optionally scroll to the first error
+
+          // direct user's view to the first error
           const firstError = document.querySelector('.error-message');
           if (firstError) {
             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
