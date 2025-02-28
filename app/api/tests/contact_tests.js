@@ -34,3 +34,4 @@ async function getContacts() {
 }
 
 getContacts();
+

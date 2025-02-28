@@ -12,7 +12,6 @@ def get_contacts():
     """
     returns all of the user's contacts a list
     """
-    #print(f"User {current_user.id} is requesting contacts", file=sys.stderr, flush=True)
     contacts = Contact.query.filter(Contact.user_id == current_user.id).all()
 
     return {'contacts': [contact.to_dict() for contact in contacts]}, 200
