@@ -1,8 +1,11 @@
 import { useState } from "react";
-import './ContactProfile.css';
+import { ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+//import './ContactProfile.css';
 
 
 function ContactProfilePage(){
+    const navigate = useNavigate();
 
     // Controlled contact details
     const [formData, setFormData] = useState({
@@ -40,10 +43,19 @@ function ContactProfilePage(){
 
 
     return (
-        <>
-            <h1>Profile Page</h1>
+        <div className="contact-profile-page-container">
+            {/* Header */}
+            <div className="contact-header">
+                <h1>Create New Contact</h1>
+                <button className="back-button" onClick={() => navigate('/')}>
+                    <ArrowLeft size={16}/>
+                    Back to Dashboard
+                </button>
+
+            </div>
+            
             <h2>Contact Form</h2>
-        </>
+        </div>
     )
 }
 
