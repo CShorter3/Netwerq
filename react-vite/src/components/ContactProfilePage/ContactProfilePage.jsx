@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { saveContactThunk } from "../../redux/contact";
+import { updateContactThunk } from "../../redux/contact";
 import './ContactProfilePage.css';
 
 
@@ -149,15 +150,15 @@ function ContactProfilePage(){
         return Object.keys(newErrors).length === 0;
     };
 
-    // Submitting a valid form adds a user contact and triggers reactive UI behaviour
+    /* Submit behavior depends on the state of it's contact form's react state variables */
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // do not process an invalid creator or edit form submission
+        // form prevents invalid contact edits and creations
         if (!validateForm()) {
             console.log('Form has errors, please correct them.');
   
-            // direct user's view to the first error
+            // form directs the client's view towards the first input error 
             const firstError = document.querySelector('.error-message');
             if (firstError) {
               firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -165,18 +166,41 @@ function ContactProfilePage(){
             return;
         } 
 
-        const result = dispatch(saveContactThunk(formData));
-
-        if(result) { 
-            // PROCESS STATE CHANGE
-        } else {
-            setErrors(prev => ({
-                ...prev,
-                ...(typeof result === 'object' ? result : { server: result })
-            }));            
+        // form can edit saved contact details
+        if (isContactSaved && savedContactId) {
+            const result = await dispatch(updateContactThunk(savedContactId, formData));
+            
+            if (result === true) {
+                setIsEditingForm(false);
+            } else {
+                // Handle errors
+                setErrors(prev => ({
+                    ...prev,
+                    ...(typeof result === 'object' ? result : { server: result })
+                }));
+            }
+        } 
+        // form can save new contact details
+        else {
+            // form used Redux to send contact details to the backend api server
+            const result = await dispatch(saveContactThunk(formData));
+            
+            if (result === true) {
+                setIsContactSaved(true);
+                setIsEditingForm(false);
+                // Store the ID for future updates
+                const state = store.getState();
+                const newContact = state.contact.currentContact;
+                setSavedContactId(newContact.id);
+            } else {
+                // Handle errors
+                setErrors(prev => ({
+                    ...prev,
+                    ...(typeof result === 'object' ? result : { server: result })
+                }));
+            }
         }
-
-    };
+};
 
     return (
         <div className="contact-profile-page-container">
