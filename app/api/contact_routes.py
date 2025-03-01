@@ -73,5 +73,3 @@ def get_connection(id):
         return jsonify({'errors': {'message': 'Unauthorized'}}), 403
         
     return jsonify(contact.to_dict()), 200
-
-
