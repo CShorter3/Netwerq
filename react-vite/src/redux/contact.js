@@ -1,11 +1,17 @@
 /* Action Constants */
 const ADD_CONTACT = "contact/addContact";
+const UPDATE_CONTACT = "contact/updateContact";
 
 /* Action Creators */
 const addContact = (contact) => ({
     type: ADD_CONTACT,
     payload: contact
 });
+
+const updateContact = (contact) => ({
+    type: UPDATE_CONTACT,
+    payload: contact
+})
 
 /* csrf extraction utility */
 const getCsrfToken = () => {
