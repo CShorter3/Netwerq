@@ -16,7 +16,7 @@ const getCsrfToken = () => {
 };
 
 /* Thunk Actions */
-export const saveContact = (contactData) => async (dispatch) => {
+export const saveContactThunk = (contactData) => async (dispatch) => {
     console.log("*****INSIDE SAVE CONTACT THUNK!*****")
     const csrfToken = getCsrfToken();
 
@@ -32,23 +32,36 @@ export const saveContact = (contactData) => async (dispatch) => {
         });
 
         if(!response.ok){
-            throw new Error("Failed to save contact");
+            const errorData = await response.json();
+            return errorData.errors || "Failed to save contact";
         }
 
         const data = await response.json();
+
+        dispatch(addContact(data));
         console.log("Returned contact data response: ", data);
 
+        return true;
     } catch (error){
         console.error("Error saving contact: ", error)
     }
-}
+};
 
 
 /* Contact slice of root reducer */
-const initialState = { user: null };
+const initialState = { 
+    contacts: [],
+    currentContact: null
+};
 
 function contactReducer(state = initialState, action){
     switch (action.type){
+        case ADD_CONTACT:
+            return {
+                ...state,
+                contacts: [...state.contacts, action.payload],
+                currentContact: action.payload
+            };
         default:
             return state;
     }

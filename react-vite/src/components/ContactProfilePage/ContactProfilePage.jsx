@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { saveContactThunk } from "../../redux/contact";
 import './ContactProfilePage.css';
 
 
@@ -147,7 +148,7 @@ function ContactProfilePage(){
         
         if (validateForm()) {
           // process submission, trigger thunk and set "contactIsBooked" react state boolean variable to true, which will be used to make form read only, render a edit button, allow edit, and disapper submit form button
-          
+          saveContactThunk(formData)
         } else {
           console.log('Form has errors, please correct them.');
 
