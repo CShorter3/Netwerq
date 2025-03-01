@@ -166,7 +166,7 @@ function ContactProfilePage(){
             return;
         } 
 
-        // form can edit saved contact details
+        // form can edit a registed contact
         if (isContactSaved && savedContactId) {
             const result = await dispatch(updateContactThunk(savedContactId, formData));
             
@@ -180,7 +180,7 @@ function ContactProfilePage(){
                 }));
             }
         } 
-        // form can save new contact details
+        // form can register a new contact
         else {
             // form used Redux to send contact details to the backend api server
             const result = await dispatch(saveContactThunk(formData));
@@ -200,7 +200,11 @@ function ContactProfilePage(){
                 }));
             }
         }
-};
+    };
+
+    const handleEdit = () => {
+        setIsEditingForm(true);
+    }
 
     return (
         <div className="contact-profile-page-container">
@@ -448,8 +452,7 @@ function ContactProfilePage(){
                 </div>
                 </form>
             </div>
-        </div>
-            
+        </div> 
     )
 }
 
