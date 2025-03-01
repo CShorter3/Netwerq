@@ -53,6 +53,34 @@ export const saveContactThunk = (contactData) => async (dispatch) => {
     }
 };
 
+export const updateContactThunk = (contactData) => async (dispatch) => {
+    console.log("*****INSIDE UPDATE CONTACT THUNK!*****");
+    const csrfToken = getCsrfToken();
+    try {
+        const response = await fetch(`/api/contacts/${contactId}`, {
+            method: "PUT",
+            headers: { 
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken,
+            },
+            credentials: 'include',
+            body: JSON.stringify(contactData)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            return errorData.errors || "Failed to update contact";
+        }
+        
+        const data = await response.json();
+        dispatch(updateContact(data));
+        return true;
+    } catch (error) {
+        console.error("Error updating contact: ", error);
+        return error.toString();
+    }
+};
+
 
 /* Contact slice of root reducer */
 const initialState = { 
