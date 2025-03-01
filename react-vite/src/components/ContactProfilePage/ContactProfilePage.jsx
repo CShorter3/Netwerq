@@ -7,10 +7,12 @@ import './ContactProfilePage.css';
 
 
 function ContactProfilePage(){
+
+    /* utility support */
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // Controlled contact details
+    // React state controlled contact details
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -24,8 +26,12 @@ function ContactProfilePage(){
         distinct_memory_note: ''
     });
     
-    // Controlled contact form errors
+    // React state controlled contact form variables
     const [errors, setErrors] = useState({});
+    const [isContactSaved, setIsContactSaved] = useState(false);
+    const [isEditingForm, setIsEditingForm] = useState(true);
+    const [savedContactId, setSavedContactId] = useState(null);
+
     
     // Validate field input utility function
     const validateContactField = (name, value) => {
