@@ -12,7 +12,7 @@ function ContactProfilePage(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // React state controlled contact details
+    /* React state controlled contact details */
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -26,14 +26,13 @@ function ContactProfilePage(){
         distinct_memory_note: ''
     });
     
-    // React state controlled contact form variables
+    /* React state controlled contact form variables */
     const [errors, setErrors] = useState({});
     const [isContactSaved, setIsContactSaved] = useState(false);
     const [isEditingForm, setIsEditingForm] = useState(true);
     const [savedContactId, setSavedContactId] = useState(null);
 
-    
-    // Validate field input utility function
+    /* Validate field input utility function */
     const validateContactField = (name, value) => {
         let error = null;
         
