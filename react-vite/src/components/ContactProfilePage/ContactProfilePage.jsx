@@ -241,6 +241,7 @@ function ContactProfilePage(){
                             onBlur={handleInputError}
                             maxLength={30}
                             required
+                            disabled={isContactSaved && !isEditing}
                         />
                         {errors.first_name && <div className="error-message">{errors.first_name}</div>}
                         <div className="char-count">{formData.first_name.length}/30</div>
@@ -257,6 +258,7 @@ function ContactProfilePage(){
                             onBlur={handleInputError}
                             maxLength={30}
                             required
+                            disabled={isContactSaved && !isEditing}
                         />
                         {errors.last_name && <div className="error-message">{errors.last_name}</div>}
                         <div className="char-count">{formData.last_name.length}/30</div>
@@ -275,6 +277,7 @@ function ContactProfilePage(){
                                 checked={formData.relation_type === 'mentor'}
                                 onChange={handleInputChange}
                                 required
+                                disabled={isContactSaved && !isEditing}
                             />
                             <span>Mentor</span>
                         </label>
@@ -285,6 +288,7 @@ function ContactProfilePage(){
                                 value="peer"
                                 checked={formData.relation_type === 'peer'}
                                 onChange={handleInputChange}
+                                disabled={isContactSaved && !isEditing}
                             />
                             <span>Peer</span>
                         </label>
@@ -295,6 +299,7 @@ function ContactProfilePage(){
                                 value="mentee"
                                 checked={formData.relation_type === 'mentee'}
                                 onChange={handleInputChange}
+                                disabled={isContactSaved && !isEditing}
                             />
                             <span>Mentee</span>
                         </label>
@@ -305,6 +310,7 @@ function ContactProfilePage(){
                                 value="recruiter"
                                 checked={formData.relation_type === 'recruiter'}
                                 onChange={handleInputChange}
+                                disabled={isContactSaved && !isEditing}
                             />
                             <span>Recruiter</span>
                         </label>
@@ -330,6 +336,7 @@ function ContactProfilePage(){
                             onChange={handleInputChange}
                             onBlur={handleInputError}
                             maxLength={35}
+                            disabled={isContactSaved && !isEditing}
                         />
                         {errors.city && <div className="error-message">{errors.city}</div>}
                         <div className="char-count">{formData.city.length}/35</div>
@@ -345,6 +352,7 @@ function ContactProfilePage(){
                             onChange={handleInputChange}
                             onBlur={handleInputError}
                             maxLength={35}
+                            disabled={isContactSaved && !isEditing}
                         />
                         {errors.state && <div className="error-message">{errors.state}</div>}
                         <div className="char-count">{formData.state.length}/35</div>
@@ -362,6 +370,7 @@ function ContactProfilePage(){
                             onChange={handleInputChange}
                             onBlur={handleInputError}
                             maxLength={20}
+                            disabled={isContactSaved && !isEditing}
                         />
                         {errors.number && <div className="error-message">{errors.number}</div>}
                         <div className="char-count">{formData.number.length}/20</div>
@@ -379,6 +388,7 @@ function ContactProfilePage(){
                             onChange={handleInputChange}
                             onBlur={handleInputError}
                             maxLength={50}
+                            disabled={isContactSaved && !isEditing}
                         />
                         {errors.job_title && <div className="error-message">{errors.job_title}</div>}
                         <div className="char-count">{formData.job_title.length}/50</div>
@@ -394,6 +404,7 @@ function ContactProfilePage(){
                             onChange={handleInputChange}
                             onBlur={handleInputError}
                             maxLength={50}
+                            disabled={isContactSaved && !isEditing}
                         />
                         {errors.company && <div className="error-message">{errors.company}</div>}
                         <div className="char-count">{formData.company.length}/50</div>
@@ -415,6 +426,7 @@ function ContactProfilePage(){
                         placeholder="Describe how you met this person..."
                         maxLength={300}
                         required
+                        disabled={isContactSaved && !isEditing}
                     />
                     {errors.init_meeting_note && <div className="error-message">{errors.init_meeting_note}</div>}
                     <div className="char-count">{formData.init_meeting_note.length}/300</div>
@@ -431,6 +443,7 @@ function ContactProfilePage(){
                         placeholder="Note distinctive features, qualities, or associations to help you remember this person..."
                         maxLength={300}
                         required
+                        disabled={isContactSaved && !isEditing}
                     />
                     {errors.distinct_memory_note && <div className="error-message">{errors.distinct_memory_note}</div>}
                     <div className="char-count">{formData.distinct_memory_note.length}/300</div>
