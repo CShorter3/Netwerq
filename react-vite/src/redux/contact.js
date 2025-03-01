@@ -7,26 +7,40 @@ const addContact = (contact) => ({
     payload: contact
 });
 
-/* Csrf Extraction Utility */
+/* csrf extraction utility */
 const getCsrfToken = () => {
     return document.cookie
       .split('; ')
       .find(row => row.startsWith('csrf_token='))
       ?.split('=')[1];
 };
-  
 
 /* Thunk Actions */
 export const saveContact = (contactData) => async (dispatch) => {
     console.log("*****INSIDE SAVE CONTACT THUNK!*****")
-    const response = await fetch("/api/contacts", {
-        method: "POST",
-        headers: { 
-            "Content-Type": "application/json" 
-        },
-        body: JSON.stringify(contactData)
-    });
-    console.log("returned contact date response: ", response);
+    const csrfToken = getCsrfToken();
+
+    try{
+        const response = await fetch("/api/contacts", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken,
+            },
+            credentials: 'include',
+            body: JSON.stringify(contactData)
+        });
+
+        if(!response.ok){
+            throw new Error("Failed to save contact");
+        }
+
+        const data = await response.json();
+        console.log("Returned contact data response: ", data);
+
+    } catch (error){
+        console.error("Error saving contact: ", error)
+    }
 }
 
 
