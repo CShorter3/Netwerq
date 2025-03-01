@@ -206,6 +206,10 @@ function ContactProfilePage(){
         setIsEditingForm(true);
     }
 
+    const handleDelete = () => {
+        navigate('/');
+    }
+
     return (
         <div className="contact-profile-page-container">
             {/* Header */}
