@@ -212,6 +212,8 @@ function ContactProfilePage(){
         setIsEditingForm(true);
         if(savedFormData){
             setFormData(savedFormData); // restore previous saved data
+        } else {
+            console.warn("No savedFormData found, unable to restore.");
         }
     };
 
@@ -219,11 +221,17 @@ function ContactProfilePage(){
         navigate('/');
     }
 
+    // useEffect(() => {
+    //     if(isContactSaved){
+    //         setSavedFormData(formData);
+    //     }
+    // }, [isContactSaved, formData]);
     useEffect(() => {
-        if(isContactSaved){
-            setSavedFormData(formData);
+        if (isEditingForm && savedFormData) {
+            setFormData(savedFormData);
         }
-    }, [isContactSaved, formData]);
+    }, [isEditingForm, savedFormData]);
+    
 
     return (
         <div className="contact-profile-page-container">
