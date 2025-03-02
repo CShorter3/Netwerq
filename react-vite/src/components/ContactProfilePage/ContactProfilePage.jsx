@@ -635,7 +635,7 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
                     setIsLoading(false);
                 });
         }
-    }, [contactId, dispatch, isNewContact]);
+    }, [contactId, dispatch, isNewContact, isInitialLoad]);
 
     /* Validate field input utility function */
     const validateContactField = (name, value) => {
