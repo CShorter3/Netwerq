@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, /*useSelector*/ } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import './ContactProfilePage.css';
@@ -9,7 +9,7 @@ import { updateContactThunk } from "../../redux/contact";
 
 function ContactProfilePage(){
 
-    const contactState = useSelector(state => state.contact);
+    //const contactState = useSelector(state => state.contact);
 
 
     /* utility support */
@@ -156,6 +156,7 @@ function ContactProfilePage(){
     /* Submit behavior depends on the state of it's contact form's react state variables */
     const handleSubmit = async (e) => {
         e.preventDefault();
+        e.stopPropagation();                       // stop input as error
         
         // form prevents invalid contact edits and creations
         if (!validateForm()) {
@@ -174,6 +175,7 @@ function ContactProfilePage(){
             const result = await dispatch(updateContactThunk(savedContactId, formData));
             
             if (result === true) {
+                setErrors({});                      // stop input as error: when validation passes, reset errors
                 setIsEditingForm(false);
             } else {
                 // Handle errors
@@ -189,11 +191,10 @@ function ContactProfilePage(){
             const result = await dispatch(saveContactThunk(formData));
             
             if (result === true) {
+                setErrors({});                  // stop input as error: when validation passes, reset errors
                 setIsContactSaved(true);
                 setIsEditingForm(false);
-                // Store the ID for future updates
-                const newContact = contactState.currentContact;
-                setSavedContactId(newContact.id);
+                setSavedContactId(result.id);
             } else {
                 // Handle errors
                 setErrors(prev => ({
@@ -205,9 +206,9 @@ function ContactProfilePage(){
     };
 
     const handleEdit = () => {
-        if (contactState && contactState.currentContact) {
-            setFormData(contactState.currentContact);
-        }
+        // if (contactState && contactState.currentContact) {
+        //     setFormData(contactState.currentContact);
+        // }
         setIsEditingForm(true);
     }
 
