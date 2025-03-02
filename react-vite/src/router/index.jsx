@@ -23,11 +23,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "contacts/new",
-        element: <ContactProfilePage isNew={true} />
+        element: <ContactProfilePage isNewContact={true} />
       },
       {
         path: "contacts/:contactId",
-        element: <ContactProfilePage isNew={false} />
+        element: <ContactProfilePage isNewContact={false} />
       }
     ],
   },
