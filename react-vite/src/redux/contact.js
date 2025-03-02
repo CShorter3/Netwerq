@@ -1,11 +1,18 @@
 /* Action Constants */
 const ADD_CONTACT = "contact/addContact";
+const LOAD_CONTACT = "contact/loadContact"
 const UPDATE_CONTACT = "contact/updateContact";
 const DELETE_CONTACT = "contact/deleteContact";
+
 
 /* Action Creators */
 const addContact = (contact) => ({
     type: ADD_CONTACT,
+    payload: contact
+});
+
+const loadContact = (contact) => ({
+    type: LOAD_CONTACT,
     payload: contact
 });
 
@@ -58,6 +65,26 @@ export const saveContactThunk = (contactData) => async (dispatch) => {
         console.error("Error saving contact: ", error)
     }
 };
+
+export const loadContactThunk = (contactId) => async (dispatch) => {
+    console.log("*****INSIDE LOAD CONTACT THUNK!*****");
+    try {
+        const response = await fetch(`/api/contacts/${contactId}`);
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            return errorData.errors || "Failed to fetch contact";
+        }
+        
+        const data = await response.json();
+        dispatch(loadContact(data));
+        return data;
+    } catch (error) {
+        console.error("Error fetching contact:", error);
+        return null;
+    }
+};
+
 
 export const updateContactThunk = (contactId, contactData) => async (dispatch) => {
     console.log("*****INSIDE UPDATE CONTACT THUNK!*****");
@@ -125,6 +152,11 @@ function contactReducer(state = initialState, action){
             return {
                 ...state,
                 contacts: [...state.contacts, action.payload],
+                currentContact: action.payload
+            };
+        case LOAD_CONTACT:
+            return {
+                ...state,
                 currentContact: action.payload
             };
         case UPDATE_CONTACT:

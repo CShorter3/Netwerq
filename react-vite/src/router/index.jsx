@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       },
       {
-        path: "contacts/:id",
+        path: "contacts/:contactId",
         element: <ContactProfilePage />
       }
     ],
