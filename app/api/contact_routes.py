@@ -111,3 +111,26 @@ def update_contact(id):
     db.session.commit()
 
     return jsonify(contact.to_dict()), 200
+
+
+# DELETE a contact
+@contact_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_contact(id):
+    """
+    Delete a contact
+    """
+    contact = Contact.query.get(id)
+
+    # Ensure contact exists
+    if not contact:
+        return {'errors': {'message': 'Contact not found'}}, 404
+
+    # Ensure contact belongs to the current user
+    if contact.user_id != current_user.id:
+        return {'errors': {'message': 'Unauthorized'}}, 403
+
+    db.session.delete(contact)
+    db.session.commit()
+
+    return {'message': 'Contact successfully deleted'}, 200
