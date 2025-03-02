@@ -33,6 +33,7 @@ function ContactProfilePage(){
     /* React state controlled contact form variables */
     const [errors, setErrors] = useState({});
     const [isContactSaved, setIsContactSaved] = useState(false);
+    const [savedFormData, setSavedFormData] = useState(null);
     const [isEditingForm, setIsEditingForm] = useState(true);
     const [savedContactId, setSavedContactId] = useState(null);
 
