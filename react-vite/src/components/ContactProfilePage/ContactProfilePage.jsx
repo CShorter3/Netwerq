@@ -34,8 +34,8 @@ function ContactProfilePage(){
     const [errors, setErrors] = useState({});
     const [isContactSaved, setIsContactSaved] = useState(false);
     const [savedFormData, setSavedFormData] = useState(null);
-    const [isEditingForm, setIsEditingForm] = useState(true);
     const [savedContactId, setSavedContactId] = useState(null);
+    const [isEditingForm, setIsEditingForm] = useState(true);
 
     /* Validate field input utility function */
     const validateContactField = (name, value) => {
@@ -177,6 +177,7 @@ function ContactProfilePage(){
             
             if (result === true) {
                 setErrors({});                      // stop input as error: when validation passes, reset errors
+                setSavedFormData(formData);
                 setIsEditingForm(false);
             } else {
                 // Handle errors
