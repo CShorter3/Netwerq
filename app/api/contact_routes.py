@@ -73,3 +73,41 @@ def get_connection(id):
         return jsonify({'errors': {'message': 'Unauthorized'}}), 403
         
     return jsonify(contact.to_dict()), 200
+
+
+# EDIT a contact
+@contact_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_contact(id):
+    """
+    Update an existing contact
+    """
+    contact = Contact.query.get(id)
+
+    # Ensure contact exists
+    if not contact:
+        return jsonify({'errors': {'message': 'Contact not found'}}), 404
+
+    # Ensure session user owns the contact
+    if contact.user_id != current_user.id:
+        return jsonify({'errors': {'message': 'Unauthorized'}}), 403
+
+    data = request.get_json()
+
+    # Update fields with new data
+    contact.first_name = data.get('first_name', contact.first_name)
+    contact.last_name = data.get('last_name', contact.last_name)
+    contact.relation_type = data.get('relation_type', contact.relation_type)
+    contact.city = data.get('city', contact.city)
+    contact.state = data.get('state', contact.state)
+    contact.number = data.get('number', contact.number)
+    contact.job_title = data.get('job_title', contact.job_title)
+    contact.company = data.get('company', contact.company)
+    contact.last_contacted = data.get('last_contacted', contact.last_contacted)
+    contact.init_meeting_note = data.get('init_meeting_note', contact.init_meeting_note)
+    contact.distinct_memory_note = data.get('distinct_memory_note', contact.distinct_memory_note)
+    contact.updated_at = datetime.now()
+
+    db.session.commit()
+
+    return jsonify(contact.to_dict()), 200
