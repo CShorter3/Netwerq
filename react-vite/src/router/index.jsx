@@ -22,8 +22,12 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       },
       {
+        path: "contacts/new",
+        element: <ContactProfilePage isNew={true} />
+      },
+      {
         path: "contacts/:contactId",
-        element: <ContactProfilePage />
+        element: <ContactProfilePage isNew={false} />
       }
     ],
   },
