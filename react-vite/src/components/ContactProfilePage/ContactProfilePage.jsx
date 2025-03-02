@@ -194,6 +194,7 @@ function ContactProfilePage(){
             
             if (result === true) {
                 setErrors({});                  // stop input as error: when validation passes, reset errors
+                setSavedFormData(formData);
                 setIsContactSaved(true);
                 setIsEditingForm(false);
                 setSavedContactId(result.id);
