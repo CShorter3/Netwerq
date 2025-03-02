@@ -9,7 +9,7 @@ const Dashboard = () => {
     if(!sessionUser) return <p>Loading...</p>;
 
     const handleCreateContact = () => {
-        navigate(`/contacts/${sessionUser.id}`);
+        navigate(`/contacts/new`);
     };
 
     return (
