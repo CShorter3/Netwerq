@@ -583,7 +583,12 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
     const [savedFormData, setSavedFormData] = useState(null);
     const [savedContactId, setSavedContactId] = useState(null);
     const [isEditingForm, setIsEditingForm] = useState(true); // Start in editing mode for new contacts
+    const [isInitialLoad, setIsInitialLoad] = useState(true); 
     const [isLoading, setIsLoading] = useState(!isNewContact); // Don't show loading for new contacts
+
+    useEffect(() => {
+        console.log('isEditingForm changed to:', isEditingForm);
+    }, [isEditingForm]);
 
     // Load existing contact data if we're viewing an existing contact
     useEffect(() => {
@@ -610,7 +615,13 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
                         setSavedFormData({...result});
                         setSavedContactId(result.id);
                         setIsContactSaved(true);
-                        setIsEditingForm(false);
+                        //setIsEditingForm(false); comment out, blocks edit mode from mainting edit status
+
+                        if(isInitialLoad){              // auto disable edit mode on an existing contact with params id only 
+                            setIsEditingForm(false);    // when a contact is initially created.
+                            setIsInitialLoad(false); 
+                        }
+
                     } else {
                         // Handle contact not found
                         setErrors({ server: result.errors || "Contact not found" });
@@ -839,9 +850,6 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
         return <div className="loading">Loading contact data...</div>;
     }
 
-    useEffect(() => {
-        console.log('isEditingForm changed to:', isEditingForm);
-    }, [isEditingForm]);
 
     return (
         <div className="contact-profile-page-container">
