@@ -219,6 +219,12 @@ function ContactProfilePage(){
         navigate('/');
     }
 
+    useEffect(() => {
+        if(isContactSaved){
+            setSavedFormData(formData);
+        }
+    }, [isContactSaved, formData]);
+
     return (
         <div className="contact-profile-page-container">
             {/* Header */}
