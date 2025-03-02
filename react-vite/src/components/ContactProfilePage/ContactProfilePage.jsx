@@ -209,11 +209,11 @@ function ContactProfilePage(){
     };
 
     const handleEdit = () => {
-        // if (contactState && contactState.currentContact) {
-        //     setFormData(contactState.currentContact);
-        // }
         setIsEditingForm(true);
-    }
+        if(savedFormData){
+            setFormData(savedFormData); // restore previous saved data
+        }
+    };
 
     const handleDelete = () => {
         navigate('/');
