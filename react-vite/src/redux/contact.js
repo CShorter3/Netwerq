@@ -1,6 +1,7 @@
 /* Action Constants */
 const ADD_CONTACT = "contact/addContact";
 const UPDATE_CONTACT = "contact/updateContact";
+const DELETE_CONTACT = "contact/deleteContact";
 
 /* Action Creators */
 const addContact = (contact) => ({
@@ -11,7 +12,12 @@ const addContact = (contact) => ({
 const updateContact = (contact) => ({
     type: UPDATE_CONTACT,
     payload: contact
-})
+});
+
+const deleteContact = (contactId) => ({
+    type: DELETE_CONTACT,
+    payload: contactId
+});
 
 /* csrf extraction utility */
 const getCsrfToken = () => {
@@ -53,7 +59,7 @@ export const saveContactThunk = (contactData) => async (dispatch) => {
     }
 };
 
-export const updateContactThunk = (contactData) => async (dispatch) => {
+export const updateContactThunk = (contactId, contactData) => async (dispatch) => {
     console.log("*****INSIDE UPDATE CONTACT THUNK!*****");
     const csrfToken = getCsrfToken();
     try {
@@ -81,6 +87,31 @@ export const updateContactThunk = (contactData) => async (dispatch) => {
     }
 };
 
+export const deleteContactThunk = (contactId) => async (dispatch) => {
+    console.log("*****INSIDE DELETE CONTACT THUNK!*****");
+    const csrfToken = getCsrfToken();
+    try {
+      const response = await fetch(`/api/contacts/${contactId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken,
+        },
+        credentials: 'include'
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        return errorData.errors || "Failed to delete contact";
+      }
+  
+      dispatch(deleteContact(contactId));
+      return true;
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+      return error.toString();
+    }
+};
 
 /* Contact slice of root reducer */
 const initialState = { 
@@ -103,6 +134,12 @@ function contactReducer(state = initialState, action){
                     contact.id === action.payload.id ? action.payload : contact
                 ),
                 currentContact: action.payload
+            };
+        case DELETE_CONTACT:
+            return {
+                ...state,
+                contacts: state.contacts.filter(contact => contact.id !== action.payload),
+                currentContact: state.currentContact?.id === action.payload? null : state.currentContact
             };
         default:
             return state;
