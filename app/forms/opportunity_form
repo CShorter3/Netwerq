@@ -1,0 +1,48 @@
+# app/forms/opportunity_form.py
+from flask_wtf import FlaskForm
+from wtforms import StringField, SelectField, TextAreaField, BooleanField, DateField, IntegerField
+from wtforms.validators import DataRequired, ValidationError, Optional, Length
+from app.models import Opportunity
+
+class OpportunityForm(FlaskForm):
+    """
+    Form for creating and updating opportunities
+    """
+    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=50)])
+    description = StringField('Description', validators=[DataRequired(), Length(min=1, max=80)])
+    opportunity_type = SelectField(
+        'Type',
+        validators=[Optional()],
+        choices=[
+            ('recommended', 'Recommended'),
+            ('custom', 'Custom')
+        ],
+        default='custom'
+    )
+    occurrence = SelectField(
+        'Occurrence',
+        validators=[DataRequired()],
+        choices=[
+            ('Once', 'Once'),
+            ('Weekly', 'Weekly'),
+            ('Bi-weekly', 'Bi-weekly'),
+            ('Monthly', 'Monthly'),
+            ('Quarterly', 'Quarterly'),
+            ('Bi-Annually', 'Bi-Annually'),
+            ('Annually', 'Annually')
+        ]
+    )
+    status = SelectField(
+        'Status',
+        validators=[Optional()],
+        choices=[
+            ('Active', 'Active'),
+            ('Pending', 'Pending'),
+            ('Completed', 'Completed')
+        ],
+        default='Active'
+    )
+    icon = StringField('Icon', validators=[Optional(), Length(max=10)], default='📅')
+    # set next_date based on Occurence
+    # get contact_id from params
+    # get user_id from current user's session
