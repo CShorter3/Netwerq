@@ -43,6 +43,7 @@ class OpportunityForm(FlaskForm):
         default='Active'
     )
     icon = StringField('Icon', validators=[Optional(), Length(max=10)], default='📅')
-    # aut set next_date based on Occurence
+    # auto set next_date based on Occurence
     # get contact_id from params
     # get user_id from current user's session
+    # auto set opportunity_type on creation
