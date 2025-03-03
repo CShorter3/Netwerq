@@ -120,8 +120,10 @@ def seed_opportunities():
                 )
                 opportunities_to_add.append(opportunity)
     
-    # Sarah is an invested professional met at a conference
+    # Demo_user is the demo user
     demo_user = User.query.filter(User.username == 'Demo').first()
+
+    # Demo met Sarah at a conference and she is invested in his career
     if demo_user:
         sarah = Contact.query.filter(Contact.first_name == 'Sarah', Contact.user_id == demo_user.id).first()
         if sarah:
@@ -138,7 +140,7 @@ def seed_opportunities():
             )
             opportunities_to_add.append(custom_opp)
         
-        # Michael is a close friend and potential business partner
+        # Michael is a close friend and potential business partner of demo
         michael = Contact.query.filter(Contact.first_name == 'Michael', Contact.user_id == demo_user.id).first()
         if michael:
             custom_opp = Opportunity(
