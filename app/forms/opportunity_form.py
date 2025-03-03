@@ -1,8 +1,6 @@
-# app/forms/opportunity_form.py
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, TextAreaField, BooleanField, DateField, IntegerField
-from wtforms.validators import DataRequired, ValidationError, Optional, Length
-from app.models import Opportunity
+from wtforms import StringField, SelectField
+from wtforms.validators import DataRequired, Optional, Length
 
 class OpportunityForm(FlaskForm):
     """
