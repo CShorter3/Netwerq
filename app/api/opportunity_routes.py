@@ -16,3 +16,26 @@ def get_opportunities():
     """
     opportunities = Opportunity.query.filter(Opportunity.user_id == current_user.id).all()
     return jsonify({'opportunities': [opportunity.to_dict() for opportunity in opportunities]}), 200
+
+
+# 2 GET a specific opportunity by ID
+@opportunity_routes.route('/<int:id>', methods=['GET'])
+@login_required
+def get_opportunity(id):
+    """
+    Return a specific opportunity by ID
+    """
+    opportunity = Opportunity.query.get(id)
+
+    # Ensure opportunity exists
+    if not opportunity:
+        return jsonify({'errors': {'message': 'Opportunity not found'}}), 404
+        
+    # Ensure opportunity belongs to session user
+    if opportunity.user_id != current_user.id:
+        return jsonify({'errors': {'message': 'Unauthorized'}}), 403
+    
+    return jsonify(opportunity.to_dict()), 200
+
+
+
