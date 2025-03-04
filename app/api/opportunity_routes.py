@@ -7,7 +7,7 @@ from datetime import datetime, date, timedelta
 opportunity_routes = Blueprint('opportunities', __name__)
 
 
-#GET all session user's opportunities
+# 1 GET all session user's opportunities
 @opportunity_routes.route('/', methods=['GET'])
 @login_required
 def get_opportunities():
