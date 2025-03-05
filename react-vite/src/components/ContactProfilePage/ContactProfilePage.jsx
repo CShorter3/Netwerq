@@ -4,6 +4,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import './ContactProfilePage.css';
 import { saveContactThunk, getContactThunk, updateContactThunk, deleteContactThunk } from "../../redux/contact";
+import OpportunityPlan from "../OpportunityPlan";
 
 function ContactProfilePage({ isNewContact: routerIsNewContact }) {
     // Get route parameters and location
@@ -573,6 +574,18 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
                 <div className="server-error">
                     {errors.server}
                 </div>
+            )}
+
+            {console.log("Opportunity Plan Debug:", { isContactSaved, contactId, relationshipType: formData.relation_type })}
+
+    
+            {/* Display Relationship Management Plan for saved contacts */}
+            {isContactSaved && contactId && (
+            
+                <OpportunityPlan 
+                    contactId={contactId} 
+                    relationshipType={formData.relation_type}
+                />
             )}
         </div> 
     );
