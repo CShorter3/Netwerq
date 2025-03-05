@@ -5,7 +5,6 @@ from datetime import datetime, date, timedelta
 from app.forms import OpportunityForm
 
 
-
 opportunity_routes = Blueprint('opportunities', __name__)
 
 
@@ -122,7 +121,7 @@ def create_opportunity(contact_id):
     return jsonify({'errors': form.errors}), 400
 
 
-# EDIT an opportunity
+# 5. EDIT an opportunity
 @opportunity_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_opportunity(id):
@@ -178,3 +177,26 @@ def update_opportunity(id):
         return jsonify(opportunity.to_dict()), 200
     
     return jsonify({'errors': form.errors}), 400
+
+
+# 6. DELETE an opportunity
+@opportunity_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_opportunity(id):
+    """
+    Delete an opportunity
+    """
+    opportunity = Opportunity.query.get(id)
+
+    # Ensure opportunity exists
+    if not opportunity:
+        return jsonify({'errors': {'message': 'Opportunity not found'}}), 404
+
+    # Ensure opportunity belongs to the current user
+    if opportunity.user_id != current_user.id:
+        return jsonify({'errors': {'message': 'Unauthorized'}}), 403
+
+    db.session.delete(opportunity)
+    db.session.commit()
+
+    return jsonify({'message': 'Opportunity successfully deleted'}), 200

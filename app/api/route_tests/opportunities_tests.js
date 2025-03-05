@@ -148,3 +148,29 @@ async function updateOpportunity(opportunityId) {
     }
 }
 updateOpportunity(1);
+
+
+/***** #6 - DELETE an opportunity *****/
+async function deleteOpportunity(opportunityId) {
+    try {
+        const response = await fetch(`/api/opportunities/${opportunityId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            credentials: 'include'
+        });
+        
+        console.log("Raw response:", response);
+        const text = await response.text();
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}, Response: ${text}`);
+        }
+        const responseData = JSON.parse(text);
+        console.log("Delete response:", responseData);
+    } catch (error) {
+        console.error("Error deleting opportunity:", error);
+    }
+}
+deleteOpportunity(1);
