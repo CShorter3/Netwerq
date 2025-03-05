@@ -38,4 +38,25 @@ def get_opportunity(id):
     return jsonify(opportunity.to_dict()), 200
 
 
+# GET all opportunities for a specific contact
+@opportunity_routes.route('/contact/<int:contact_id>', methods=['GET'])
+@login_required
+def get_contact_opportunities(contact_id):
+    """
+    Return all opportunities for a specific contact
+    """
+    # Verify the contact exists and belongs to the current user
+    contact = Contact.query.get(contact_id)
+    if not contact:
+        return jsonify({'errors': {'message': 'Contact not found'}}), 404
+        
+    if contact.user_id != current_user.id:
+        return jsonify({'errors': {'message': 'Unauthorized'}}), 403
+    
+    opportunities = Opportunity.query.filter(
+        Opportunity.contact_id == contact_id,
+        Opportunity.user_id == current_user.id
+    ).all()
+    
+    return jsonify({'opportunities': [opportunity.to_dict() for opportunity in opportunities]}), 200
 

@@ -53,3 +53,28 @@ async function getOpportunityById(opportunityId) {
     }
 }
 getOpportunityById(21);
+
+
+/***** #3 - GET all opportunities for a specific contact [logged in as demo] *****/
+async function getContactOpportunities(contactId) {
+    try {
+        const response = await fetch(`/api/opportunities/contact/${contactId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            credentials: 'include'
+        });
+        console.log("Raw response:", response);
+        const text = await response.text();
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}, Response: ${text}`);
+        }
+        const data = JSON.parse(text);
+        console.log("Contact opportunities:", data);
+    } catch (error) {
+        console.error("Error fetching contact opportunities:", error);
+    }
+}
+getContactOpportunities(1);
