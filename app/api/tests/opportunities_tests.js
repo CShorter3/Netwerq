@@ -113,3 +113,38 @@ async function createOpportunity(contactId) {
     }
 }
 createOpportunity(1);
+
+
+/***** #5 - UPDATE an existing opportunity *****/
+async function updateOpportunity(opportunityId) {
+    const data = {
+        title: "Updated Project Collaboration",
+        description: "Follow-up discussion on AI platform collaboration",
+        status: "Pending",
+        occurrence: "Quarterly",
+        icon: "📝"
+    };
+    
+    try {
+        const response = await fetch(`/api/opportunities/${opportunityId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(data),
+            credentials: 'include'
+        });
+        
+        console.log("Raw response:", response);
+        const text = await response.text();
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}, Response: ${text}`);
+        }
+        const responseData = JSON.parse(text);
+        console.log("Updated opportunity:", responseData);
+    } catch (error) {
+        console.error("Error updating opportunity:", error);
+    }
+}
+updateOpportunity(1);
