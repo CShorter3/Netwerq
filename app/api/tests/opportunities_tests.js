@@ -78,3 +78,38 @@ async function getContactOpportunities(contactId) {
     }
 }
 getContactOpportunities(1);
+
+
+/***** #4 - CREATE a new opportunity for a contact *****/
+async function createOpportunity(contactId) {
+    const data = {
+        title: "Project Collaboration",
+        description: "Discuss potential collaboration on education initiative",
+        status: "Active",
+        occurrence: "Monthly",
+        icon: "🤖"
+    };
+    
+    try {
+        const response = await fetch(`/api/opportunities/contact/${contactId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(data),
+            credentials: 'include'
+        });
+        
+        console.log("Raw response:", response);
+        const text = await response.text();
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}, Response: ${text}`);
+        }
+        const responseData = JSON.parse(text);
+        console.log("Created opportunity:", responseData);
+    } catch (error) {
+        console.error("Error creating opportunity:", error);
+    }
+}
+createOpportunity(1);

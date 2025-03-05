@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Opportunity, Contact
 from datetime import datetime, date, timedelta
+from app.forms import OpportunityForm
+
 
 
 opportunity_routes = Blueprint('opportunities', __name__)
@@ -60,3 +62,61 @@ def get_contact_opportunities(contact_id):
     
     return jsonify({'opportunities': [opportunity.to_dict() for opportunity in opportunities]}), 200
 
+
+# POST a new opportunity
+@opportunity_routes.route('/contact/<int:contact_id>', methods=['POST'])
+@login_required
+def create_opportunity(contact_id):
+    """
+    Create a new opportunity for a specific contact
+    """
+    # Verify the contact exists and belongs to the current user
+    contact = Contact.query.get(contact_id)
+    if not contact:
+        return jsonify({'errors': {'message': 'Contact not found'}}), 404
+        
+    if contact.user_id != current_user.id:
+        return jsonify({'errors': {'message': 'Unauthorized'}}), 403
+    
+    form = OpportunityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
+        
+        # Automatically set the opportunities 'next_date'
+        next_date = date.today()
+        occurrence = form.data['occurrence']
+        
+        if occurrence == 'Once':
+            next_date = date.today() + timedelta(days=7)
+        elif occurrence == 'Weekly':
+            next_date = date.today() + timedelta(days=7)
+        elif occurrence == 'Bi-weekly':
+            next_date = date.today() + timedelta(days=14)
+        elif occurrence == 'Monthly':
+            next_date = date.today() + timedelta(days=30)
+        elif occurrence == 'Quarterly':
+            next_date = date.today() + timedelta(days=90)
+        elif occurrence == 'Bi-Annually':
+            next_date = date.today() + timedelta(days=180)
+        elif occurrence == 'Annually':
+            next_date = date.today() + timedelta(days=365)
+        
+        opportunity = Opportunity(
+            opportunity_type='custom',  # User-created opportunities are always custom
+            title=form.data['title'],
+            description=form.data['description'],
+            status=form.data['status'],
+            occurrence=form.data['occurrence'],
+            icon=form.data['icon'] if form.data['icon'] else '📅',
+            next_date=next_date,
+            user_id=current_user.id,
+            contact_id=contact_id
+        )
+        
+        db.session.add(opportunity)
+        db.session.commit()
+        
+        return jsonify(opportunity.to_dict()), 201
+    
+    return jsonify({'errors': form.errors}), 400
