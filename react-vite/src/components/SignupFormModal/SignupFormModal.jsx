@@ -91,7 +91,6 @@
 
 // export default SignupFormModal;
 
-
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -106,6 +105,37 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+
+const validateForm = () => {
+  const newErrors = {};
+  
+  if (!email) {
+    newErrors.email = "Email is required";
+  } else if (!/\S+@\S+\.\S+/.test(email)) {
+    newErrors.email = "Please provide a valid email";
+  }
+  
+  if (!username) {
+    newErrors.username = "Username is required";
+  } else if (username.length < 3 || username.length > 40) {
+    newErrors.username = "Username must be between 3 and 40 characters";
+  }
+  
+  if (!password) {
+    newErrors.password = "Password is required";
+  } else if (password.length < 6) {
+    newErrors.password = "Password must be at least 6 characters long";
+  }
+  
+  if (password !== confirmPassword) {
+    newErrors.confirmPassword = "Passwords must match";
+  }
+  
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
