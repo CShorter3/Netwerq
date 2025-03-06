@@ -19,7 +19,9 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  background-color: #e53e3e;
+  background-color: #0a36e8da; 
+  /* background-color: #20629F; */
+  /* background-color: #20629F; */
   padding: 12px 24px;
   box-sizing: border-box;
 }
@@ -35,6 +37,13 @@
   padding: 6px 10px;
 }
 
+
+.contact-nav a {
+  color: whitesmoke !important;
+  /* color: #4ca154 !important; */
+  margin-left: auto;
+}
+
 .back-button:hover {
-  background-color: rgba(221, 14, 14, 0.1);
+  color:white !important;
 }
