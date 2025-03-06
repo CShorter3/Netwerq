@@ -137,102 +137,100 @@ const validateForm = () => {
 };
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      return setErrors({
-        confirmPassword:
-          "Confirm Password field must be the same as the Password field",
-      });
-    }
-    
-    const serverResponse = await dispatch(
-      thunkSignup({
-        email,
-        username,
-        password,
-      })
-    );
-    
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      closeModal();
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  if(!validateForm()){
+    return;
+  }
+  
+  const serverResponse = await dispatch(
+    thunkSignup({
+      email,
+      username,
+      password,
+    })
+  );
+  
+  if (serverResponse) {
+    setErrors(serverResponse);
+  } else {
+    closeModal();
+  }
+};
 
-  return (
-    <div className="signup-modal">
-      {/* Header */}
-      <div className="signup-modal-header">
-        <h2>Join Netwerq</h2>
-        <p>Create an account to build your professional network</p>
-      </div>
+return (
+  <div className="signup-modal">
+    {/* Header */}
+    <div className="signup-modal-header">
+      <h2>Join Netwerq</h2>
+      <p>Create an account to build your professional network</p>
+    </div>
+    
+    {/* Content */}
+    <div className="signup-modal-content">
+      {errors.server && <p className="error-message server-error">{errors.server}</p>}
       
-      {/* Content */}
-      <div className="signup-modal-content">
-        {errors.server && <p className="error-message server-error">{errors.server}</p>}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            {errors.email && <p className="error-message">{errors.email}</p>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            {errors.username && <p className="error-message">{errors.username}</p>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {errors.password && <p className="error-message">{errors.password}</p>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              id="confirmPassword"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-            {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
-          </div>
-          
-          <button type="submit" className="submit-button">Sign Up</button>
-        </form>
-        
-        <div className="login-prompt">
-          <p>
-            Already have an account? <a href="#">Log in</a>
-          </p>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          {errors.email && <p className="error-message">{errors.email}</p>}
         </div>
+        
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          {errors.username && <p className="error-message">{errors.username}</p>}
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {errors.password && <p className="error-message">{errors.password}</p>}
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
+        </div>
+        
+        <button type="submit" className="submit-button">Sign Up</button>
+      </form>
+      
+      <div className="login-prompt">
+        <p>
+          Already have an account? <a href="#">Log in</a>
+        </p>
       </div>
     </div>
-  );
-}
+  </div>
+);
+
 
 export default SignupFormModal;
