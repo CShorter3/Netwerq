@@ -47,7 +47,7 @@ class SignUpForm(FlaskForm):
             EqualTo('password', message="Passwords must match")
     ])
 
-    # Optional fields
+    # Optional fields -> data is not required so wont throw error when validating form when data not provided
     first_name = StringField(
         'first_name', validators=[
             Length(max=30, message="First name must be less than 30 characters")
