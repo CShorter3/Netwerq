@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
+import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -12,6 +13,13 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  const switchToLogin = (e) => {
+    e.preventDefault();
+    closeModal();
+    setModalContent(<LoginFormModal />);
+  };
+
 
 
 const validateForm = () => {
@@ -132,7 +140,7 @@ return (
       
       <div className="login-prompt">
         <p>
-          Already have an account? <a href="#">Log in</a>
+          Already have an account? <a onClick={switchToLogin}>Log in</a>
         </p>
       </div>
     </div>
