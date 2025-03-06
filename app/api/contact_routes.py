@@ -56,8 +56,9 @@ def create_contact():
         )
         
         return jsonify(contact.to_dict()), 200
-    
-    return jsonify({'errors': form.errors}), 400
+    else:
+        print("Contact form validation errors:", form.errors)
+        return jsonify({'errors': form.errors}), 400
 
 
 # GET a session user's contact by id
