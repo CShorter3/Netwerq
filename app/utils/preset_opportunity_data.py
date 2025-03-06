@@ -1,11 +1,7 @@
-# app/utils/opportunity_presets_data.py
-
 """
 This file contains the preset opportunity data for different relationship types.
-Separating the data from the logic makes it easier to update and maintain.
 """
 
-# Common/foundational opportunities for all relationship types
 FOUNDATIONAL_OPPORTUNITIES = [
     {
         'title': 'Endorse a skill or service',
