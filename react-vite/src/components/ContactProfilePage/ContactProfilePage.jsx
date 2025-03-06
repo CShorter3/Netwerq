@@ -583,8 +583,8 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
             {isContactSaved && contactId && (
             
                 <OpportunityPlan 
-                    // contactId={contactId} 
-                    // relationshipType={formData.relation_type}
+                    contactId={contactId} 
+                    relationshipType={formData.relation_type}
                 />
             )}
         </div> 
