@@ -49,12 +49,12 @@ def sign_up():
     Creates a new user and logs them in
     """
 
-    print("Signup request data:", request.json)
+    # print("Signup request data:", request.json)
 
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("Form validated successfully")
+        # print("Form validated successfully")
 
         user = User(
             username=form.data['username'],             # required fields use direct access
@@ -71,7 +71,7 @@ def sign_up():
         return user.to_dict(), 201
     else:
 
-        print("Form validation errors:", form.errors)
+        # print("Form validation errors:", form.errors)
 
         return form.errors, 401
 

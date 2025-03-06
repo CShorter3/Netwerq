@@ -10,6 +10,11 @@ const removeUser = () => ({
   type: REMOVE_USER
 });
 
+const csrfToken = document.cookie
+.split('; ')
+.find(row => row.startsWith('csrf_token='))
+?.split('=')[1];
+
 export const thunkAuthenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/");
 	if (response.ok) {
@@ -17,7 +22,6 @@ export const thunkAuthenticate = () => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
-
 		dispatch(setUser(data));
 	}
 };
@@ -45,10 +49,6 @@ export const thunkLogin = (credentials) => async dispatch => {
 export const thunkSignup = (user) => async (dispatch) => {
   console.log("Signup request data:", user);
 
-  const csrfToken = document.cookie
-  .split('; ')
-  .find(row => row.startsWith('csrf_token='))
-  ?.split('=')[1];
 
   const response = await fetch("/api/auth/signup", {
     method: "POST",
