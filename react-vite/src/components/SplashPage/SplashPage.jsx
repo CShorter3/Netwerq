@@ -1,13 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { thunkLogout } from "../../redux/session";
 import { Sprout } from 'lucide-react';
 import "./SplashPage.css";
 
 function SplashPage() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setModalContent } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
@@ -30,7 +31,7 @@ function SplashPage() {
             that shape your future
           </h1>
 
-          {!sessionUser && (
+          {!sessionUser ? (
             <div className="auth-links">
               {/* Login Button - Opens LoginFormModal */}
               <a
@@ -48,7 +49,20 @@ function SplashPage() {
                 Sign up
               </a>
             </div>
+
+          ) : (
+
+            <div className="auth-links">
+              {/* Login Button - Opens LoginFormModal */}
+              <a
+                className="logout-link"
+                onClick={() => dispatch(thunkLogout())}
+              >
+                Log out
+              </a>
+            </div>
           )}
+
         </div>
 
         {sessionUser ? (
