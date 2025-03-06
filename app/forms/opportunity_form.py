@@ -6,8 +6,16 @@ class OpportunityForm(FlaskForm):
     """
     Form for creating and updating opportunities
     """
-    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=50)])
-    description = StringField('Description', validators=[DataRequired(), Length(min=1, max=80)])
+    title = StringField('Title', validators=[
+        DataRequired(message="Title is required"),
+        Length(min=1, max=50, message="Title must be between 1 and 50 characters")
+    ])
+
+    description = StringField('Description', validators=[
+        DataRequired(message="Title is required"), 
+        Length(min=1, max=80, message="Title must be between 1 and 50 characters")
+    ])
+
     opportunity_type = SelectField(
         'Type',
         validators=[Optional()],
@@ -17,9 +25,10 @@ class OpportunityForm(FlaskForm):
         ],
         default='custom'
     )
+
     occurrence = SelectField(
         'Occurrence',
-        validators=[DataRequired()],
+        validators=[DataRequired(message="Frequency is required")],
         choices=[
             ('Once', 'Once'),
             ('Weekly', 'Weekly'),

@@ -1,5 +1,6 @@
 import { Calendar, Edit2 } from 'lucide-react';
 
+/* Opportunity cards inherit data from the Opportunity Plan Component */
 function OpportunityCard({ opportunity, onEdit }){
 
     // Unitility function: Format date mm/dd/yyyy 
