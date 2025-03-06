@@ -1,4 +1,14 @@
 /* SplashPage.css - With Baseline Alignment */
+
+a{
+    text-decoration: underline;
+    color: rgba(8, 45, 15, 0.939) !important;
+}
+
+a:hover{
+    color: black !importantg;
+}
+
 .splash-page {
     width: 100vw;
     height: 100vh;
@@ -59,13 +69,9 @@
     opacity: 0.8;
   }
   
-  /* Make OpenModalMenuItem style like a link */
-  li.login-link,
-  li.signup-link {
-    list-style-type: none;
-  }
   
   /* Add Contact Button - aligned with baseline */
+  .sprout-container,
   .add-contact-button {
     background: none;
     border: none;
@@ -117,10 +123,10 @@
     transform: translate(-50%, -50%);
   }
   
-  .button-text {
+  /* .button-text {
     font-size: 12px;
     font-weight: 500;
-  }
+  } */
   
   /* Responsive adjustments */
   @media (max-width: 900px) {

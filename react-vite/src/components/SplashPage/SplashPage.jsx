@@ -1,14 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useModal } from "../../context/Modal"; // Import useModal
+import { useModal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { Sprout } from 'lucide-react';
 import "./SplashPage.css";
 
 function SplashPage() {
   const navigate = useNavigate();
-  const { setModalContent } = useModal(); // Use modal context
+  const { setModalContent } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
 
   const handleAddContact = () => {
@@ -32,29 +33,34 @@ function SplashPage() {
           {!sessionUser && (
             <div className="auth-links">
               {/* Login Button - Opens LoginFormModal */}
-              <button
+              <a
                 className="login-link"
                 onClick={() => setModalContent(<LoginFormModal />)}
               >
                 Log in
-              </button>
+              </a>
 
               {/* Signup Button - Opens SignupFormModal */}
-              <button
+              <a
                 className="signup-link"
                 onClick={() => setModalContent(<SignupFormModal />)}
               >
                 Sign up
-              </button>
+              </a>
             </div>
           )}
         </div>
 
-        {sessionUser && (
+        {sessionUser ? (
           <button className="add-contact-button" onClick={handleAddContact}>
             <span className="add-icon"></span>
             <span className="button-text">Add Contact</span>
           </button>
+
+        ) : (
+            <div className="sprout-container">
+              <Sprout className="sprout-icon" size={100} color="rgba(19, 50, 11, 0)" />
+            </div>
         )}
       </div>
     </div>
