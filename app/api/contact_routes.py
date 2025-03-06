@@ -91,6 +91,9 @@ def update_contact(id):
     """
     Update an existing contact
     """
+    form = ContactForm()  
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
     contact = Contact.query.get(id)
 
     # Ensure contact exists
