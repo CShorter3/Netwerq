@@ -45,7 +45,7 @@ def create_contact():
             distinct_memory_note=form.data['distinct_memory_note']
         )
         
-        # Save the contact and recieve a contact id to use for preset
+        # Saving the contact will return a contact.id
         db.session.add(contact)
         db.session.commit()
 
