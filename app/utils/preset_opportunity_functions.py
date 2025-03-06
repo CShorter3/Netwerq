@@ -2,7 +2,7 @@ from datetime import date, timedelta
 from app.models import db, Opportunity
 from app.utils.preset_opportunity_data import FOUNDATIONAL_OPPORTUNITIES, RELATION_OPPORTUNITIES
 
-def create_preset_opportunities(contact_id, relation_type, user_id):
+def apply_preset_opportunities(contact_id, relation_type, user_id):
     """
     Create preset opportunities for a newly created contact based on their relationship type.
     
@@ -12,7 +12,7 @@ def create_preset_opportunities(contact_id, relation_type, user_id):
         user_id (int): The ID of the current user
     """
     # Initialize empty list to store all opportunity objects
-    opportunities_to_create = []
+    opportunities_to_apply = []
     
     # First, create Opportunity objects for foundational opportunities
     for opp_data in FOUNDATIONAL_OPPORTUNITIES:
@@ -27,7 +27,7 @@ def create_preset_opportunities(contact_id, relation_type, user_id):
             user_id=user_id,
             contact_id=contact_id
         )
-        opportunities_to_create.append(opportunity)
+        opportunities_to_apply.append(opportunity)
     
     # Relation-specific opportunities
     # Convert relation_type to lowercase for case-insensitive comparison
@@ -47,13 +47,13 @@ def create_preset_opportunities(contact_id, relation_type, user_id):
                 user_id=user_id,
                 contact_id=contact_id
             )
-            opportunities_to_create.append(opportunity)
+            opportunities_to_apply.append(opportunity)
     
     # Add all opportunities to the database in a batch
-    db.session.add_all(opportunities_to_create)
+    db.session.add_all(opportunities_to_apply)
     db.session.commit()
     
-    return opportunities_to_create
+    return opportunities_to_apply
 
 
 def calculate_next_date(occurrence):
