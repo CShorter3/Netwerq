@@ -12,7 +12,7 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const { closeModal, setModalContent } = useModal();
 
   const switchToLogin = (e) => {
     e.preventDefault();
@@ -138,7 +138,7 @@ return (
       
       <div className="login-prompt">
         <p>
-          Already have an account? <a onClick={switchToLogin}>Log in</a>
+          Already have an account? <a href="#" onClick={switchToLogin}>Log in</a>
         </p>
       </div>
     </div>

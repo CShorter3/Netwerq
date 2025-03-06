@@ -10,7 +10,7 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const { closeModal, setModalContent } = useModal();
 
   const switchToSignup = (e) => {
     e.preventDefault();
@@ -74,7 +74,7 @@ function LoginFormModal() {
       
       <div className="signup-prompt">
         <p>
-          New to Netwerq? <a onClick={switchToSignup}>Create an account</a>
+          New to Netwerq? <a href="#" onClick={switchToSignup}>Create an account</a>
         </p>
       </div>
     </div>
