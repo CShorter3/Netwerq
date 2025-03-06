@@ -7,11 +7,11 @@
 
 .page-nav {
     display: flex;
-    justify-content: flex-end; /* Aligns content to the right */
+    justify-content: flex-end;
     width: 100%;
     padding-bottom: 16px;
     margin-bottom: 16px;
-    border-bottom: 1px solid #eaeaea; /* Optional: adds a light separator */
+    border-bottom: 1px solid #eaeaea;
 }
 
 .back-button {
