@@ -105,7 +105,7 @@ def create_opportunity(contact_id):
             opportunity_type='custom',  # User-created opportunities are always custom
             title=form.data['title'],
             description=form.data['description'],
-            status=form.data['status'],
+            status=form.data['status', 'Active'],
             occurrence=form.data['occurrence'],
             icon=form.data['icon'] if form.data['icon'] else '📅',
             next_date=next_date,
