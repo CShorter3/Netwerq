@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { PlusCircle } from "lucide-react";
-import "./RelationshipManagementComponent.css";
 import OpportunityCard from "../OpportunityCard";
 import AddEditOpportunityModal from "../OpportunityCard/AddEditOpportunityModal";
 import { fetchOpportunitiesThunk } from "../../redux/opportunity";
+import "./RelationshipManagementComponent.css";
 
 // A Opportunity plan component renders in a Profile Contact Page, on contact creation 
 function OpportunityPlan({ contactId, relationshipType }) {

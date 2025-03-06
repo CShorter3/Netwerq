@@ -1,4 +1,5 @@
 import { Calendar, Edit2 } from 'lucide-react';
+import "./OpportunityCard.css";
 
 /* Opportunity cards inherit data from the Opportunity Plan Component */
 function OpportunityCard({ opportunity, onEdit }){
