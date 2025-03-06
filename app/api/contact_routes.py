@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Contact
 from app.forms import ContactForm
+from app.utils import apply_preset_opportunities
 from datetime import datetime
 
 
@@ -44,8 +45,15 @@ def create_contact():
             distinct_memory_note=form.data['distinct_memory_note']
         )
         
+        # Save the contact and recieve a contact id to use for preset
         db.session.add(contact)
         db.session.commit()
+
+        apply_preset_opportunities(
+            contact_id=contact.id,
+            relation_type=contact.relation_type,
+            user_id=current_user.id
+        )
         
         return jsonify(contact.to_dict()), 200
     
