@@ -1,3 +1,13 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    outline: 1px solid red;
+  }
+  
+
+.input{
+    display: flex;
+}
+
 .login-modal {
     background-color: white;
     border-radius: 8px;
@@ -43,6 +53,7 @@
   
   .form-group input {
     width: 100%;
+    /* margin: 0 -12px auto;               for some reason this kind of works */
     padding: 10px 12px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
