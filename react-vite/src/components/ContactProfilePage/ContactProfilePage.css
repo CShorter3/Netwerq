@@ -5,22 +5,18 @@
     padding: 16px;
 }
 
-.contact-header {
+.page-nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-end; /* Aligns content to the right */
+    width: 100%;
+    padding-bottom: 16px;
     margin-bottom: 16px;
-}
-
-.contact-header h1 {
-    font-size: 22px;
-    color: #333;
-    margin: 0;
+    border-bottom: 1px solid #eaeaea; /* Optional: adds a light separator */
 }
 
 .back-button {
     display: flex;
-    align-items: center;
+    align-content: flex-end;
     gap: 6px;
     background: none;
     border: none;
@@ -34,6 +30,20 @@
 .back-button:hover {
     background-color: rgba(74, 111, 255, 0.1);
 }
+
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.contact-header h1 {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+}
+
 
 .contact-form-container {
     background-color: white;

@@ -290,13 +290,17 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
 
     return (
         <div className="contact-profile-page-container">
-            {/* Header */}
-            <div className="contact-header">
-                <h1>{pageTitle}</h1>
+            {/* Page Navigation */}
+            <div className="page-nav">
                 <button className="back-button" onClick={() => navigate('/')}>
                     <ArrowLeft size={16}/>
                     Back to Dashboard
                 </button>
+            </div>
+
+            {/* Header */}
+            <div className="contact-header">
+                <h1>{pageTitle}</h1>
             </div>
             
             {/* Form */}
