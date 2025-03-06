@@ -2,6 +2,7 @@
 const FETCH_OPPORTUNITIES = "opportunity/fetchOpportunities";
 const ADD_OPPORTUNITY = "opportunity/addOpportunity";
 const UPDATE_OPPORTUNITY = "opportunity/updateOpportunity";
+const REMOVE_OPPORTUNITY = "opportunity/removeOpportunity";
 
 
 /* Action Creators */
@@ -18,7 +19,12 @@ const addOpportunity = (opportunity) => ({
 const updateOpportunity = (opportunity) => ({
     type: UPDATE_OPPORTUNITY,
     payload: opportunity
-  });
+});
+
+const removeOpportunity = (opportunityId) => ({
+    type: REMOVE_OPPORTUNITY,
+    payload: opportunityId
+});
 
 
 /* CSRF token extraction utility */
@@ -118,6 +124,35 @@ export const updateOpportunityThunk = (opportunityId, opportunityData) => async 
 };
 
 
+export const deleteOpportunityThunk = (opportunityId) => async (dispatch) => {
+    console.log("***** INSIDE UPDATE OPPS THUNK! *****");
+
+    const csrfToken = getCsrfToken();
+
+    try {
+    const response = await fetch(`/api/opportunities/${opportunityId}`, {
+        method: "DELETE",
+        headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken
+        },
+        credentials: 'include'
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        return { errors: errorData.errors || "Failed to delete opportunity" };
+    }
+
+    dispatch(removeOpportunity(opportunityId));
+    return { success: true };
+    } catch (error) {
+        console.error("Error deleting opportunity:", error);
+    return { errors: error.toString() };
+    }
+};
+
+
 /* Opportunity reducer */
 const initialState = {
     opportunities: []
@@ -141,8 +176,14 @@ function opportunityReducer(state = initialState, action) {
                 opportunities: state.opportunities.map(opportunity => 
                 opportunity.id === action.payload.id ? action.payload : opportunity
                 )
+        };
+        case REMOVE_OPPORTUNITY:
+            return {
+                ...state,
+                opportunities: state.opportunities.filter(
+                opportunity => opportunity.id !== action.payload
+                )
             };
-      
         default:
             return state;
     }
