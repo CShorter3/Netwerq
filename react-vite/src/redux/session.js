@@ -27,12 +27,15 @@ export const thunkAuthenticate = () => async (dispatch) => {
 };
 
 export const thunkLogin = (credentials) => async dispatch => {
-
   
   const response = await fetch("/api/auth/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials)
+    headers: { 
+      "Content-Type": "application/json",
+      'X-CSRFToken': csrfToken, 
+    },
+    body: JSON.stringify(credentials),
+    credentials: 'include'
   });
   
   if(response.ok) {
@@ -47,8 +50,7 @@ export const thunkLogin = (credentials) => async dispatch => {
 };
 
 export const thunkSignup = (user) => async (dispatch) => {
-  console.log("Signup request data:", user);
-
+  //console.log("Signup request data:", user);
 
   const response = await fetch("/api/auth/signup", {
     method: "POST",
@@ -65,7 +67,7 @@ export const thunkSignup = (user) => async (dispatch) => {
     dispatch(setUser(data));
   } else if (response.status < 500) {
     const errorMessages = await response.json();
-    console.log("Signup validation errors:", errorMessages);
+    //console.log("Signup validation errors:", errorMessages);
     return errorMessages
   } else {
     return { server: "Something went wrong. Please try again" }
