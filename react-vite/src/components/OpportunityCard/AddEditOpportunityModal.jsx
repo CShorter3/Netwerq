@@ -32,7 +32,7 @@ function AddEditOpportunityModal({ contactId, opportunity = null, onClose, oppor
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Preset icons for selection
-  const iconOptions = ["📅", "🤝", "💬", "📊", "📚", "💼", "🧭", "☕", "🎯", "📝"];
+  const iconOptions = ["📅", "💬", "📊", "📚", "💼", "🧭", "☕", "🎯", "📝"];
 
   // Pre-populate form with opportunity data when in edit mode
   useEffect(() => {
