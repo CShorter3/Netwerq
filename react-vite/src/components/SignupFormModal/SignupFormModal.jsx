@@ -71,7 +71,7 @@ return (
     {/* Header */}
     <div className="signup-modal-header">
       <h2>Join Netwerq</h2>
-      <p>Create an account to build your professional network</p>
+      <p>Create an account to strengthen your professional network</p>
     </div>
     
     {/* Content */}
