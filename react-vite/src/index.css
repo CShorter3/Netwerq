@@ -1,1 +1,22 @@
 /* TODO: Add sitewide styles */
+/* Reset default margins and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    overflow-x: hidden;
+  }
+  
+  /* Keep your splash page styles the same, but make sure it covers everything */
+  .splash-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #4ca154;
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }

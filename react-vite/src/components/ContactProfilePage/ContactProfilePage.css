@@ -1,4 +1,3 @@
-/* ContactProfilePage.css */
 .contact-profile-page-container {
     width: 90%;
     max-width: 1000px;
@@ -99,6 +98,7 @@ label {
     font-weight: 500;
     color: #555;
     margin-bottom: 6px;
+
 }
 
 input, select, textarea {
@@ -107,6 +107,7 @@ input, select, textarea {
     border-radius: 4px;
     font-size: 10px;
     transition: border-color 0.2s;
+
 }
 
 input:focus, select:focus, textarea:focus {
