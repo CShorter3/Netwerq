@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { X, Trash2, AlertTriangle } from "lucide-react";
-//import "./RelationshipManagementModals.css";
 import { createOpportunityThunk, updateOpportunityThunk, deleteOpportunityThunk } from "../../redux/opportunity";
+import "./AddEditOpportunityModal.css";
 
 function AddEditOpportunityModal({ contactId, opportunity = null, onClose, opportunities, setOpportunities }) {
   const dispatch = useDispatch();
