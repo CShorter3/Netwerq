@@ -2,6 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import SignupFormModal from "../SignupFormModal/SignupFormModal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -10,6 +11,12 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  const switchToSignup = (e) => {
+    e.preventDefault();
+    closeModal();
+    setModalContent(<SignupFormModal />);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +74,7 @@ function LoginFormModal() {
       
       <div className="signup-prompt">
         <p>
-          New to Netwerq? <a href="#">Create an account</a>
+          New to Netwerq? <a onClick={switchToSignup}>Create an account</a>
         </p>
       </div>
     </div>
