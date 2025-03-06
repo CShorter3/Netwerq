@@ -17,7 +17,7 @@ const getCsrfToken = () => {
       ?.split('=')[1];
   };
   
-  
+
   /* Thunk Actions */
   export const fetchOpportunitiesThunk = (contactId) => async (dispatch) => {
     try {
@@ -42,3 +42,23 @@ const getCsrfToken = () => {
       return { errors: error.toString() };
     }
   };
+
+
+  /* Opportunity reducer */
+const initialState = {
+    opportunities: []
+  };
+  
+  function opportunityReducer(state = initialState, action) {
+    switch (action.type) {
+      case FETCH_OPPORTUNITIES:
+        return {
+          ...state,
+          opportunities: action.payload
+        };
+      default:
+        return state;
+    }
+  }
+  
+  export default opportunityReducer;
