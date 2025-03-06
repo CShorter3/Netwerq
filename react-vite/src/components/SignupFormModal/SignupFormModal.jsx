@@ -62,8 +62,12 @@ const handleSubmit = async (e) => {
       email,
       username,
       password,
+      confirm_password: confirmPassword
     })
   );
+
+  console.log("Signup response:", serverResponse);
+
   
   if (serverResponse) {
     setErrors(serverResponse);
