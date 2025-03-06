@@ -20,6 +20,7 @@ const getCsrfToken = () => {
 
   /* Thunk Actions */
   export const fetchOpportunitiesThunk = (contactId) => async (dispatch) => {
+    console.log("***** INSIDE FETCH OPPS THUNK! *****");
     try {
       const response = await fetch(`/api/opportunities/contact/${contactId}`, {
         method: "GET",
@@ -35,6 +36,7 @@ const getCsrfToken = () => {
       }
   
       const data = await response.json();
+      console.log("fetch ops api data response: ", data);
       dispatch(fetchOpportunities(data.opportunities));
       return data;
     } catch (error) {
