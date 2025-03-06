@@ -46,7 +46,7 @@ const getCsrfToken = () => {
   };
 
 
-  /* Opportunity reducer */
+/* Opportunity reducer */
 const initialState = {
     opportunities: []
   };
