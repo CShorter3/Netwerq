@@ -4,11 +4,11 @@ from wtforms.validators import DataRequired, Length, Optional, ValidationError
 import re
 
 # custom validator uses regex to allow numbers and symbols but not letters
-def validate_phone_number(form, field):
-    if field.data and field.data.strip():
-        pattern = r'^[^a-zA-Z]*$'
-        if not re.match(pattern, field.data):
-            raise ValidationError('Phone number cannot contain letters')
+# def validate_phone_number(form, field):
+#     if field.data and field.data.strip():
+#         pattern = r'^[^a-zA-Z]*$'
+#         if not re.match(pattern, field.data):
+#             raise ValidationError('Phone number cannot contain letters')
 
 class ContactForm(FlaskForm):
     """
@@ -47,7 +47,7 @@ class ContactForm(FlaskForm):
     number = StringField('Phone Number', validators=[
         Optional(),
         Length(max=20, message="Phone number must be less than 20 characters"),
-        validate_phone_number
+        # validate_phone_number
     ])
     
     job_title = StringField('Job Title', validators=[
