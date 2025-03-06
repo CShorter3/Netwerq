@@ -29,33 +29,50 @@ function LoginFormModal() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
+    <div className="login-modal">
+    {/* Header */}
+    <div className="login-modal-header">
+      <h5>Sign in to manage your professional Netwerq</h5>
+    </div>
+
+    {/* Content */}
+    <div className="login-modal-content">
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
           <input
+            id="email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
+          {errors.email && <p className="error-message">{errors.email}</p>}
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+          {errors.password && <p className="error-message">{errors.password}</p>}
+        </div>
+        
+        <button type="submit" className="submit-button">Sign In</button>
       </form>
-    </>
-  );
+      
+      <div className="signup-prompt">
+        <p>
+          New to Netwerq? <a href="#">Create an account</a>
+        </p>
+      </div>
+    </div>
+    </div>
+    );
 }
 
 export default LoginFormModal;

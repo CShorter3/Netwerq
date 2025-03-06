@@ -1,0 +1,113 @@
+.login-modal {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .login-modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .login-modal-header p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #6b7280;
+  }
+  
+  .login-modal-content {
+    padding: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #374151;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #4ca154;
+    box-shadow: 0 0 0 2px rgba(76, 161, 84, 0.2);
+  }
+  
+  .error-message {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+  
+  .submit-button {
+    width: 100%;
+    background-color: #4ca154;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-button:hover {
+    background-color: #3b8043;
+  }
+  
+  .submit-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(76, 161, 84, 0.3);
+  }
+  
+  .signup-prompt {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .signup-prompt p {
+    font-size: 14px;
+    color: #4b5563;
+  }
+  
+  .signup-prompt a {
+    color: #4ca154;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .signup-prompt a:hover {
+    color: #3b8043;
+    text-decoration: underline;
+  }
+  
+  /* Override Modal.css if needed */
+  #modal-content {
+    padding: 0;
+  }
