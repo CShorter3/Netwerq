@@ -1,3 +1,40 @@
-.profile-dropdown {
+/* .profile-dropdown {
   position: absolute;
+} */
+
+/* Main navigation styles */
+.main-nav {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav li {
+  margin-right: 20px;
+}
+
+/* Contact page specific navigation */
+.contact-nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  background-color: #e53e3e;
+  padding: 12px 24px;
+  box-sizing: border-box;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.back-button:hover {
+  background-color: rgba(221, 14, 14, 0.1);
 }

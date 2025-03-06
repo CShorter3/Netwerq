@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+// import Navigation from "./components/Navigation/Navigation";
 import { Provider as ReduxProvider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import configureStore from "./redux/store";
@@ -17,6 +18,7 @@ if (import.meta.env.MODE !== "production") {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ReduxProvider store={store}>
+      {/* <Navigation /> */}
       <RouterProvider router={router} />
     </ReduxProvider>
   </React.StrictMode>
