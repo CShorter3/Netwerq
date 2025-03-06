@@ -576,15 +576,15 @@ function ContactProfilePage({ isNewContact: routerIsNewContact }) {
                 </div>
             )}
 
-            {console.log("Opportunity Plan Debug:", { isContactSaved, contactId, relationshipType: formData.relation_type })}
+            {/* {console.log("Opportunity Plan Debug:", { isContactSaved, contactId, relationshipType: formData.relation_type })} */}
 
     
             {/* Display Relationship Management Plan for saved contacts */}
             {isContactSaved && contactId && (
             
                 <OpportunityPlan 
-                    contactId={contactId} 
-                    relationshipType={formData.relation_type}
+                    // contactId={contactId} 
+                    // relationshipType={formData.relation_type}
                 />
             )}
         </div> 
