@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+// import { ArrowLeft } from 'lucide-react';
 import './ContactProfilePage.css';
 import { saveContactThunk, getContactThunk, updateContactThunk, deleteContactThunk } from "../../redux/contact";
 import OpportunityPlan from "../OpportunityPlan";

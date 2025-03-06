@@ -22,17 +22,17 @@ function Navigation() {
   }
 
   return <div></div>; 
-  // (
-    // <ul>
-    //   <li>
-    //     <NavLink to="/">Home</NavLink>
-    //   </li>
+  // // (
+  //   // <ul>
+  //   //   <li>
+  //   //     <NavLink to="/">Home</NavLink>
+  //   //   </li>
 
-      {/* <li>
-        <ProfileButton />
-      </li> */}
-    // </ul>
-  // );
+  //     {/* <li>
+  //       <ProfileButton />
+  //     </li> */}
+  //   // </ul>
+  // // );
 }
 
 export default Navigation;
