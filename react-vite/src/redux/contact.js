@@ -1,6 +1,7 @@
 /* Action Constants */
 const ADD_CONTACT = "contact/addContact";
-const LOAD_CONTACT = "contact/loadContact"
+const LOAD_CONTACT = "contact/loadContact";
+const LOAD_CONTACTS = "contact/loadContacts";
 const UPDATE_CONTACT = "contact/updateContact";
 const DELETE_CONTACT = "contact/deleteContact";
 
@@ -14,6 +15,11 @@ const addContact = (contact) => ({
 const loadContact = (contact) => ({
     type: LOAD_CONTACT,
     payload: contact
+});
+
+const loadContacts = (contacts) => ({
+    type: LOAD_CONTACTS,
+    payload: contacts
 });
 
 const updateContact = (contact) => ({
@@ -82,6 +88,32 @@ export const getContactThunk = (contactId) => async (dispatch) => {
     } catch (error) {
         console.error("Error fetching contact:", error);
         return { errors: error.toString() };
+    }
+};
+
+
+export const fetchUserContactsThunk = () => async (dispatch) => {
+    console.log("*****INSIDE LOAD CONTACTS THUNK!*****");
+    
+    try {
+      const response = await fetch('/api/contacts', {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include'
+    });
+  
+    const data = await response.json();
+      
+    if (!response.ok) {
+        console.log("Contact fetch error:", data.errors);
+        return { errors: data.errors || "Failed to fetch contacts" };
+    }
+  
+      dispatch(loadContacts(data.contacts));
+      return data;
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+      return { errors: { server: "An unexpected error occurred" } };
     }
 };
 
