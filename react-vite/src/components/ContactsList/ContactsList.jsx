@@ -19,7 +19,6 @@ function ContactsList({ sessionUser }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all contacts on component mount
   useEffect(() => {
     // Only fetch contacts if we have a valid session user
     if (sessionUser && sessionUser.id) {
@@ -28,7 +27,10 @@ function ContactsList({ sessionUser }) {
         try {
           const result = await dispatch(fetchUserContactsThunk());
           if (result && result.errors) {
-            setError(result.errors || 'Failed to load contacts');
+            // * Ensure error is always a string by handling object errors
+            setError(typeof result.errors === 'object' ? 
+              (result.errors.server || JSON.stringify(result.errors)) : 
+              result.errors || 'Failed to load contacts');
           }
         } catch (err) {
           setError('An error occurred while loading contacts');
@@ -40,7 +42,7 @@ function ContactsList({ sessionUser }) {
       
       loadContacts();
     }
-  }, [dispatch, sessionUser]); // Added sessionUser to dependency array
+  }, [dispatch, sessionUser]);
 
   // Filter buttons data
   const filterButtons = [
@@ -118,10 +120,13 @@ function ContactsList({ sessionUser }) {
         {isLoading ? (
           <div className="loading-state">Loading contacts...</div>
         ) : error ? (
-          <div className="error-state">{error}</div>
+          // * Ensure error display handles objects properly
+          <div className="error-state">
+            {typeof error === 'object' ? JSON.stringify(error) : error}
+          </div>
         ) : contacts.length === 0 ? (
           <div className="empty-state">
-            <p>Network looks depleted, time to nourish</p>
+            <p>Network looks empty</p>
             <p>Click the + button to add your first contact.</p>
           </div>
         ) : (
