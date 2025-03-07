@@ -191,6 +191,11 @@ function contactReducer(state = initialState, action){
                 ...state,
                 currentContact: action.payload
             };
+        case LOAD_CONTACTS:
+            return {
+                ...state,
+                contacts: action.payload
+            };
         case UPDATE_CONTACT:
             return {
                 ...state,
