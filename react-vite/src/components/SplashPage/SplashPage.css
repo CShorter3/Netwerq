@@ -69,8 +69,40 @@ a:hover{
     opacity: 0.8;
   }
   
-  
-  /* Add Contact Button - aligned with baseline */
+.action-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.dashboard-button {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.8s;
+  margin-left: 20px;
+}
+
+.dashboard-button:hover {
+  opacity: 0.8;
+}
+
+.dashboard-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
   .sprout-container,
   .add-contact-button {
     background: none;

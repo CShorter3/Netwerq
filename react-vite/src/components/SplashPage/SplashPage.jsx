@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { thunkLogout } from "../../redux/session";
-import { Sprout } from 'lucide-react';
+import { Sprout, LayoutDashboard } from 'lucide-react';
 import "./SplashPage.css";
 
 function SplashPage() {
@@ -15,6 +15,10 @@ function SplashPage() {
 
   const handleAddContact = () => {
     navigate("/contacts/new");
+  };
+
+  const handleDashboard = () => {
+    navigate("/dashboard");
   };
 
   return (
@@ -66,11 +70,16 @@ function SplashPage() {
         </div>
 
         {sessionUser ? (
-          <button className="add-contact-button" onClick={handleAddContact}>
-            <span className="add-icon"></span>
-            <span className="button-text">Add Contact</span>
-          </button>
-
+            <div className="action-buttons">
+              <button className="add-contact-button" onClick={handleAddContact}>
+                <span className="add-icon"></span>
+                <span className="button-text">Add Contact</span>
+              </button>
+              <button className="dashboard-button" onClick={handleDashboard}>
+                <LayoutDashboard className="dashboard-icon" size={24} />
+                <span className="button-text">Dashboard</span>
+              </button>
+          </div>
         ) : (
             <div className="sprout-container">
               <Sprout className="sprout-icon" size={100} color="rgba(19, 50, 11, 0)" />
