@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginFormPage from '../components/LoginFormPage';
-import SignupFormPage from '../components/SignupFormPage';
+// import LoginFormPage from '../components/LoginFormPage';
+// import SignupFormPage from '../components/SignupFormPage';
+import SplashPage from '../components/SplashPage/SplashPage';
 import Dashboard from '../components/Dashboard';
 import ContactProfilePage from '../components/ContactProfilePage';
-import SplashPage from '../components/SplashPage/SplashPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -12,16 +12,20 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: < SplashPage /> || <Dashboard />,
+        element: < SplashPage />,
       },
       {
-        path: "login",
-        element: <LoginFormPage />,
+        path: "/dashboard",
+        element: <Dashboard />,
       },
-      {
-        path: "signup",
-        element: <SignupFormPage />,
-      },
+      // {
+      //   path: "login",
+      //   element: <LoginFormPage />,
+      // },
+      // {
+      //   path: "signup",
+      //   element: <SignupFormPage />,
+      // },
       {
         path: "contacts/new",
         element: <ContactProfilePage isNewContact={true} />
