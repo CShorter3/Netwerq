@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
         element: < SplashPage />,
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: <Dashboard />,
       },
       // {

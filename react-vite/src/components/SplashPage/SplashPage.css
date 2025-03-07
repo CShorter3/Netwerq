@@ -1,5 +1,10 @@
 /* SplashPage.css - With Baseline Alignment */
 
+*, *::before, *::after {
+  box-sizing: border-box;
+  /* outline: 1px solid red; */
+}
+
 a{
     text-decoration: underline;
     color: rgba(8, 45, 15, 0.939) !important;

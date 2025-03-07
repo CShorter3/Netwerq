@@ -94,11 +94,14 @@ export const getContactThunk = (contactId) => async (dispatch) => {
 
 export const fetchUserContactsThunk = () => async (dispatch) => {
     console.log("*****INSIDE LOAD CONTACTS THUNK!*****");
-    
+       const csrfToken = getCsrfToken(); 
     try {
-      const response = await fetch('/api/contacts', {
+      const response = await fetch('/api/contacts/', {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+         },
         credentials: 'include'
     });
   
