@@ -13,9 +13,20 @@ function Navigation() {
   if (path.includes('/contacts/')) {
     return (
       <div className="contact-nav">
-        <NavLink to="/" className="back-button">
+        <NavLink to="/dashboard" className="back-button">
           <ArrowLeft size={16} />
           Back to Dashboard
+        </NavLink>
+      </div>
+    );
+  }
+
+  if (path.includes('/')) {
+    return (
+      <div className="contact-nav">
+        <NavLink to="/dashboard" className="back-button">
+          <ArrowLeft size={16} />
+          Back home
         </NavLink>
       </div>
     );

@@ -2,84 +2,89 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
-  /* outline: 1px solid red; */
+  /* outline: 1px solid red; */  /* Commented out for normal viewing */
 }
 
-a{
-    text-decoration: underline;
-    color: rgba(8, 45, 15, 0.939) !important;
+a {
+  text-decoration: underline;
+  color: rgba(8, 45, 15, 0.939) !important;
 }
 
-a:hover{
-    color: black !important;
+a:hover {
+  color: black !important;
 }
 
 .splash-page {
-    width: 100vw;
-    height: 100vh;
-    background-color: #4ca154;
-    display: flex;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Main container for flexible layout with baseline alignment */
-  .page-container {
-    width: 70%;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 0 5%;
-  }
-  
-  /* Left-side content */
-  .content-container {
-    flex: 1;
-    max-width: 600px;
-  }
-  
-  .welcome-text {
-    color: white;
-    font-size: 16px;
-    opacity: 0.8;
-    margin: 0 0 10px 0;
-  }
-  
-  .tagline {
-    font-size: 50px;
-    font-weight: bold;
-    color: white;
-    line-height: 1.8;
-    margin: 0 0 16px 0;
-  }
-  
-  .auth-links {
-    display: flex;
-    align-items: flex-end;
-    gap: 30px;
-  }
-  
-  .login-link,
-  .signup-link {
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    padding-top: 20px;
-  }
-  
-  .login-link:hover,
-  .signup-link:hover {
-    opacity: 0.8;
-  }
-  
+  width: 100vw;
+  height: 100vh;
+  background-color: #4ca154;
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Main container for flexible layout with baseline alignment */
+.page-container {
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 5%;
+}
+
+/* Left-side content */
+.content-container {
+  flex: 1;
+  max-width: 600px;
+}
+
+.welcome-text {
+  color: white;
+  font-size: 16px;
+  opacity: 0.8;
+  margin: 0 0 10px 0;
+}
+
+.tagline {
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  line-height: 1.8;
+  margin: 0 0 16px 0;
+}
+
+.auth-links {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.login-link,
+.signup-link,
+.logout-link {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  padding-top: 20px;
+}
+
+.login-link:hover,
+.signup-link:hover,
+.logout-link:hover {
+  opacity: 0.8;
+}
+
+/* Action buttons container */
 .action-buttons {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
-.dashboard-button {
+/* Common styles for both buttons in the action buttons container */
+.action-buttons button {
   background: none;
   border: none;
   display: flex;
@@ -89,13 +94,13 @@ a:hover{
   color: white;
   cursor: pointer;
   transition: opacity 0.8s;
-  margin-left: 20px;
 }
 
-.dashboard-button:hover {
+.action-buttons button:hover {
   opacity: 0.8;
 }
 
+/* Dashboard button specific styling */
 .dashboard-icon {
   width: 80px;
   height: 80px;
@@ -108,132 +113,141 @@ a:hover{
   margin-bottom: 10px;
 }
 
-  .sprout-container,
-  .add-contact-button {
-    background: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    transition: opacity 0.8s;
-    margin-left: 40px;
+/* Sprout container for non-logged in state */
+.sprout-container {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-left: 40px;
+}
+
+/* Add icon for the plus button */
+.add-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.add-icon::before,
+.add-icon::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+}
+
+/* Horizontal line */
+.add-icon::before {
+  width: 30px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Vertical line */
+.add-icon::after {
+  width: 2px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .page-container {
+    padding: 0 8%;
   }
   
-  .add-contact-button:hover {
-    opacity: 0.8;
+  .add-icon, .dashboard-icon {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tagline {
+    font-size: 28px;
   }
   
-  .add-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    position: relative;
-    margin-bottom: 10px;
+  .add-icon, .dashboard-icon {
+    width: 60px;
+    height: 60px;
   }
   
-  .add-icon::before,
-  .add-icon::after {
-    content: '';
-    position: absolute;
-    background-color: white;
-  }
-  
-  /* Horizontal line */
   .add-icon::before {
-    width: 30px;
-    height: 2px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 24px;
   }
   
-  /* Vertical line */
   .add-icon::after {
-    width: 2px;
-    height: 30px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 24px;
   }
   
-  /* .button-text {
+  .dashboard-icon {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 6%;
+  }
+  
+  .content-container {
+    margin-bottom: 40px;
+  }
+  
+  .action-buttons {
+    align-self: center;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tagline {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .login-link,
+  .signup-link,
+  .logout-link {
     font-size: 12px;
-    font-weight: 500;
-  } */
-  
-  /* Responsive adjustments */
-  @media (max-width: 900px) {
-    .page-container {
-      padding: 0 8%;
-    }
-    
-    .add-icon {
-      width: 70px;
-      height: 70px;
-    }
   }
   
-  @media (max-width: 768px) {
-    .tagline {
-      font-size: 28px;
-    }
-    
-    .add-icon {
-      width: 60px;
-      height: 60px;
-    }
-    
-    .add-icon::before {
-      width: 24px;
-    }
-    
-    .add-icon::after {
-      height: 24px;
-    }
+  .add-icon, .dashboard-icon {
+    width: 50px;
+    height: 50px;
   }
   
-  @media (max-width: 600px) {
-    .page-container {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0 6%;
-    }
-    
-    .content-container {
-      margin-bottom: 40px;
-    }
-    
-    .add-contact-button {
-      margin-left: 0;
-      align-self: flex-end;
-    }
+  .add-icon::before {
+    width: 20px;
   }
   
-  @media (max-width: 480px) {
-    .tagline {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-    
-    .login-link,
-    .signup-link {
-      font-size: 12px;
-    }
-    
-    .add-icon {
-      width: 50px;
-      height: 50px;
-    }
-    
-    .add-icon::before {
-      width: 20px;
-    }
-    
-    .add-icon::after {
-      height: 20px;
-    }
+  .add-icon::after {
+    height: 20px;
   }
+  
+  .dashboard-icon {
+    padding: 10px;
+  }
+  
+  .button-text {
+    font-size: 12px;
+  }
+}
