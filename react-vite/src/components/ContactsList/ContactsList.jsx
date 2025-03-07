@@ -121,7 +121,7 @@ function ContactsList({ sessionUser }) {
           <div className="error-state">{error}</div>
         ) : contacts.length === 0 ? (
           <div className="empty-state">
-            <p>You don't have any contacts yet.</p>
+            <p>Network looks depleted, time to nourish</p>
             <p>Click the + button to add your first contact.</p>
           </div>
         ) : (

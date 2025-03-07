@@ -9,7 +9,7 @@ const Dashboard = () => {
 
     if(!sessionUser) {
         navigate('/');  // navigate to splash page
-        return null;
+        return <div></div>;
     }
 
     return (
