@@ -84,3 +84,6 @@ def calculate_next_date(occurrence):
         return today + timedelta(days=365)
     else:
         return today + timedelta(days=30)
+        
+        
+#take intentional break.
